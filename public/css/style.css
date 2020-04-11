@@ -1,0 +1,29 @@
+a {
+    text-decoration: none;
+    color: grey;
+}
+
+a:visited {
+    color: grey;
+}
+
+.post_links:visited {
+    color: purple;
+}
+
+.arrows {
+    cursor: pointer;
+    font-size: 26px;
+}
+
+.voted_up {
+    color: orange!important;
+}
+
+.voted_down {
+    color: blue!important;
+}
+
+.version {
+    font-size: 22px;
+}
