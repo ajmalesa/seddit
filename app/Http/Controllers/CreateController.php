@@ -7,6 +7,7 @@ use App\Post;
 
 class CreateController extends Controller
 {
+    
     public function index() 
     { 
         return view('pages.create');
@@ -14,20 +15,26 @@ class CreateController extends Controller
 
     public function insert() 
     {
+        // Validate data from view to make sure we got all needed fields for db
         $data = request()->validate([
             'content' => 'required',
             'author' => 'required',
             'url' => 'required'
         ]);
 
+        // Create new post record for db
         $post = new \App\Post();
 
+        // Populate post fields with data from view
         $post->content = request('content');
         $post->author = request('author');
         $post->url = request('url');
 
+        // Save post to db
         $post->save();
 
-        return redirect("..\\");
+        // Return to home page 
+        return redirect("/");
     }
+
 }

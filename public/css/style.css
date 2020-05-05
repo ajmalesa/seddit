@@ -7,13 +7,25 @@ a:visited {
     color: grey;
 }
 
+li {
+    list-style-type: none;
+}
+
+.posts_list {
+    padding-left: 3px;
+}
+
+.comments_list {
+    padding-left: 17px;
+}
+
 .post_links:visited {
     color: purple;
 }
 
 .arrows {
     cursor: pointer;
-    font-size: 26px;
+    font-size: 24px;
 }
 
 .voted_up {
@@ -26,4 +38,8 @@ a:visited {
 
 .version {
     font-size: 22px;
+}
+
+#sort_order {
+    width: 80px!important;
 }
