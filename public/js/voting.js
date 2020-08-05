@@ -18,11 +18,25 @@ $(document).on('click', '.arrows', function() {
     if($(this).hasClass('upvote_arrows') && !$(this).hasClass('voted_up')) {
         point += 1;
         $(this).addClass('voted_up');
+        // Run this code for comment arrows only
+        if($(this.parentElement)[0].children[2].classList.contains('comment_arrows')) {
+            if($(this.parentElement)[0].children[3].classList.contains('voted_down')) {
+                $(this.parentElement)[0].children[3].classList.remove('voted_down');
+                point += 1;
+            }
+        }
     } else if(!$(this).hasClass('upvote_arrows') && !$(this).hasClass('voted_down')) {
         point -= 1;
         $(this).addClass('voted_down');
+        // Run this code for comment arrows only
+        if($(this.parentElement)[0].children[2].classList.contains('comment_arrows')) {
+            if($(this.parentElement)[0].children[2].classList.contains('voted_up')) {
+                $(this.parentElement)[0].children[2].classList.remove('voted_up');
+                point -= 1;
+            }
+        }
     } else if ($(this).hasClass('upvote_arrows') && $(this).hasClass('voted_up')) { 
-        // Remove upvote class when button if upvote button is clicked again
+        // Remove upvote class if upvote button is clicked again
         // and remove class to change color back to default
         point -= 1;
         $(this).removeClass('voted_up');
@@ -32,6 +46,8 @@ $(document).on('click', '.arrows', function() {
         point += 1;
         $(this).removeClass('voted_down');
     } 
+
+    console.log($(this.parentElement)[0].children[2].classList);
 
     // Set the id to that will be sent in ajax post to the id from the 
     // post that the arrows was clicked on
