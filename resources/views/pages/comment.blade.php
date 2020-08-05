@@ -62,7 +62,8 @@
                             </span>
                             
                             <br>
-                            @guest <a href="/login">reply</a>
+                            {{-- Temporarily remove replying functionality until I get it working --}}
+                            {{-- @guest <a href="/login">reply</a>
                             @else 
                             <a class="reply" id="{{ $comment->id }}" href="#">reply</a>
                             <div hidden class="reply_section" id="{{ $comment->id }}">
@@ -70,7 +71,7 @@
                                 <button class="btn btn-outline-dark post_reply post_reply" id="{{ $comment->id }}">post</button>
                                 <button class="btn btn-outline-dark cancel_reply" id="{{ $comment->id}}" href="#">cancel</button>
                             </div>
-                            @endguest
+                            @endguest --}}
                         </li>          
                             
                     @endif
