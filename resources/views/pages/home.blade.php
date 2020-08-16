@@ -18,8 +18,8 @@
                 </a> 
                 - {{ $post->author }}
                 - (<span class="vote_count" id="{{ $post->id }}">{{ $post->votes }}</span>)
-                - <a id="{{ $post->id }}" class="arrows upvote_arrows">↑</a> 
-                <a id="{{ $post->id }}" class="arrows">↓</a>
+                - <a id="{{ $post->id }}" class="arrows upvote_arrows all_posts_arrow">↑</a> 
+                <a id="{{ $post->id }}" class="arrows all_posts_arrow">↓</a>
             </li> 
             
             <a href="comment/{{ $post->id }}"> {{ $comments->where('post_id', $post->id)->count() }} comments</a>

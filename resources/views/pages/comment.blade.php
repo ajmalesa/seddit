@@ -13,10 +13,9 @@
             <div class="col-xs-6">
                 <h1 class="h5">
                     (<span class="vote_count" id="{{ $post->id }}">{{ $post->votes }}</span>)
-                    <a id="{{ $post->id }}" class="arrows upvote_arrows">↑</a> 
-                    <a id="{{ $post->id }}" class="arrows">↓</a>&nbsp;-&nbsp;
+                    <a id="{{ $post->id }}" class="arrows upvote_arrows current_post_arrows">↑</a> 
+                    <a id="{{ $post->id }}" class="arrows current_post_arrows">↓</a>&nbsp;-&nbsp;
                 </h1>
-
             </div>
 
             <div class="col-xs-6">

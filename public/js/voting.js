@@ -15,23 +15,51 @@ $(document).on('click', '.arrows', function() {
     // If the arrow that was clicked has a class of upvote_arrows, set
     // point to a positive 1, otherwise set to negative 1 and change 
     // classes to update colors to match vote
-    if($(this).hasClass('upvote_arrows') && !$(this).hasClass('voted_up')) {
+    if ($(this).hasClass('upvote_arrows') && !$(this).hasClass('voted_up')) {
         point += 1;
         $(this).addClass('voted_up');
-        // Run this code for comment arrows only
-        if($(this.parentElement)[0].children[2].classList.contains('comment_arrows')) {
+        // Run for comment arrows only
+        if ($(this.parentElement)[0].children[2].classList.contains('comment_arrows')) {
             if($(this.parentElement)[0].children[3].classList.contains('voted_down')) {
                 $(this.parentElement)[0].children[3].classList.remove('voted_down');
                 point += 1;
             }
+        } 
+        // Run for votes on the currently opened post only
+        else if(this.classList.contains('current_post_arrows')) {
+            if(this.parentElement.children[2].classList.contains('voted_down')) {
+                this.parentElement.children[2].classList.remove('voted_down');
+                point += 1;
+            };
+        } 
+        // Run for votes on any posts made on posts page
+        else if (this.classList.contains('all_posts_arrow')) {
+            if(this.parentElement.children[3].classList.contains('voted_down')) {
+                this.parentElement.children[3].classList.remove('voted_down')
+                point += 1;
+            }
         }
-    } else if(!$(this).hasClass('upvote_arrows') && !$(this).hasClass('voted_down')) {
+    } else if (!$(this).hasClass('upvote_arrows') && !$(this).hasClass('voted_down')) {
         point -= 1;
         $(this).addClass('voted_down');
         // Run this code for comment arrows only
-        if($(this.parentElement)[0].children[2].classList.contains('comment_arrows')) {
-            if($(this.parentElement)[0].children[2].classList.contains('voted_up')) {
+        if ($(this.parentElement)[0].children[2].classList.contains('comment_arrows')) {
+            if( $(this.parentElement)[0].children[2].classList.contains('voted_up')) {
                 $(this.parentElement)[0].children[2].classList.remove('voted_up');
+                point -= 1;
+            }
+        } 
+        // Run for votes on the currently opened post only
+        else if (this.classList.contains('current_post_arrows')) {
+            if(this.parentElement.children[1].classList.contains('voted_up')) {
+                this.parentElement.children[1].classList.remove('voted_up');
+                point -= 1;
+            };
+        } 
+        // Run for votes on any posts made on posts page
+        else if (this.classList.contains('all_posts_arrow')) {
+            if(this.parentElement.children[2].classList.contains('voted_up')) {
+                this.parentElement.children[2].classList.remove('voted_up')
                 point -= 1;
             }
         }
@@ -47,7 +75,7 @@ $(document).on('click', '.arrows', function() {
         $(this).removeClass('voted_down');
     } 
 
-    console.log($(this.parentElement)[0].children[2].classList);
+    
 
     // Set the id to that will be sent in ajax post to the id from the 
     // post that the arrows was clicked on
