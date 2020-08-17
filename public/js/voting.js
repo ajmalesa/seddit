@@ -75,8 +75,6 @@ $(document).on('click', '.arrows', function() {
         $(this).removeClass('voted_down');
     } 
 
-    
-
     // Set the id to that will be sent in ajax post to the id from the 
     // post that the arrows was clicked on
     var id = this.id;
