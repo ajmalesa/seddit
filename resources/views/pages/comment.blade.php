@@ -50,7 +50,7 @@
                     @if($comment->replied_to_id == 0)
                         <li>
                             <strong>{{ $comment->comment }}</strong>
-                            - {{ $post->author }}
+                            - {{ $comment->getUserName() }}
                             - (<span class="vote_count comment_vote_count" id="{{ $comment->id }}">{{ $comment->votes }}</span>)
                             - <a id="{{ $comment->id }}" class="arrows upvote_arrows comment_arrows">↑</a> 
                             <a id="{{ $comment->id }}" class="arrows comment_arrows">↓</a>
