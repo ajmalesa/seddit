@@ -4,14 +4,18 @@
 
 @section('content')
     
-    <select class="form-control w-25 mb-2" onChange="window.location.href=this.value" id="sort_order" name="sort">
+    {{-- <select class="form-control w-25 mb-2" onChange="window.location.href=this.value" id="sort_order" name="sort">
         <li><option value="home">new</option></li>
         <li><option @if(Request::is('*top')) {{ "selected" }} @endif value="top">top</option></li>
-    </select>
+    </select> --}}
+
+    <a class="btn btn-outline-dark" href="/home">new</a>
+    <a class="btn btn-outline-dark" href="/top">top</a>
 
     <ol class="posts_list">
         {{-- Iterate through each post and add to list --}}
         @foreach ($posts as $post)
+            <hr />  
             <li>
                 <a class="post_links" href="{{ $post->url }}" target="_blank">
                     <strong>{{ $post->content }}</strong>
@@ -35,7 +39,8 @@
             {{-- Show how long ago post was made and exact time/date on hover --}}
             <span title = "{{ $post->created_at->format('m/d/y h:ma') }}">
                 {{ $post->created_at->diffForHumans() }}
-            </span>            
+            </span>    
+            <hr />        
         @endforeach
     </ol>
 
