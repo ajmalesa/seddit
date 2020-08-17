@@ -9,8 +9,8 @@
         <li><option @if(Request::is('*top')) {{ "selected" }} @endif value="top">top</option></li>
     </select> --}}
 
-    <a class="btn btn-outline-dark" href="/home">new</a>
-    <a class="btn btn-outline-dark" href="/top">top</a>
+    <a class="btn btn-outline-dark @if(Request::is('*home') || !Request::is('*top')) {{ "active" }} @endif" href="/home">new</a>
+    <a class="btn btn-outline-dark @if(Request::is('*top')) {{ "active" }} @endif" href="/top">top</a>
 
     <ol class="posts_list">
         {{-- Iterate through each post and add to list --}}
