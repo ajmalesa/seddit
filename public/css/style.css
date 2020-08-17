@@ -13,6 +13,7 @@ li {
 
 .posts_list {
     padding-left: 3px;
+    margin-top: 1rem;
 }
 
 .comments_list {
@@ -42,4 +43,13 @@ li {
 
 #sort_order {
     width: 80px!important;
+}
+
+@media (max-width: 767px) {
+    body, .btn, .arrows {
+        font-size: 0.8rem;
+    }
+    .navbar-brand {
+        font-size: 1.15rem;
+    }
 }
