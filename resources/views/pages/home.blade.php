@@ -22,19 +22,21 @@
                 </a> 
                 - {{ $post->author }}
                 - (<span class="vote_count" id="{{ $post->id }}">{{ $post->votes }}</span>)
-                - <a id="{{ $post->id }}" class="arrows upvote_arrows all_posts_arrow">↑</a> 
-                <a id="{{ $post->id }}" class="arrows all_posts_arrow">↓</a>
+                @if (Auth::check())
+                    - <a id="{{ $post->id }}" class="arrows upvote_arrows all_posts_arrow">↑</a> 
+                      <a id="{{ $post->id }}" class="arrows all_posts_arrow">↓</a>
+                @else 
+                    - <a href="/register" class="arrows upvote_arrows all_posts_arrow">↑</a> 
+                      <a href="/register" class="arrows all_posts_arrow">↓</a>
+                @endif
             </li> 
             
             <a href="comment/{{ $post->id }}"> {{ $comments->where('post_id', $post->id)->count() }} comments</a>
             {{-- {{ $users->where('user_id', $comment->user_id)->count() }} --}}
 
-            @guest
-            @else 
-                @if (Auth::user()->username == $post->author)
+            @if (Auth::check() && Auth::user()->username == $post->author)
                     <a href="delete/{{ $post->id }}">delete</a>
-                @endif
-            @endguest
+            @endif
 
             {{-- Show how long ago post was made and exact time/date on hover --}}
             <span title = "{{ $post->created_at->format('m/d/y h:ma') }}">
