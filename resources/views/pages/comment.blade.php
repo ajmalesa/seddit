@@ -56,8 +56,8 @@
                             <a id="{{ $comment->id }}" class="arrows comment_arrows">↓</a>
 
                             {{-- Show how long ago post was made and exact time/date on hover --}}
-                            <span title = "{{ $post->created_at->format('m/d/y h:ma') }}">
-                                {{$post->created_at->diffForHumans()}}
+                            <span title = "{{ $comment->created_at->format('m/d/y h:ma') }}">
+                                {{$comment->created_at->diffForHumans()}}
                             </span>
                             
                             <br>
