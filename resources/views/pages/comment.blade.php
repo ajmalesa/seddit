@@ -30,7 +30,7 @@
 
         <form class="pt-3 pb-3" autocomplete="off" id="create_form" action="{{ $post->id }}/reply" method="post">
             @csrf
-            @guest @else <input required placeholder="type your comment here" class="form-control w-50" type="text" name="comment"><br>@endguest
+            @guest @else <textarea required placeholder="type your comment here" class="form-control w-75" type="text" name="comment"></textarea><br>@endguest
             <button class="btn btn-outline-dark" type="submit">post comment</button>
 
             <input hidden class="form-control" type="text" name="user_id" readonly value="@guest @else {{ Auth::user()->id }}@endguest">
@@ -47,10 +47,14 @@
             <ul class="comments_list">
                 {{-- Iterate through each post and add to list --}}
                 @foreach ($comments as $comment)
+                    <hr>
                     @if($comment->replied_to_id == 0)
                         <li>
-                            <strong>{{ $comment->comment }}</strong>
-                            - {{ $comment->getUserName() }}
+                            <strong>{!!  nl2br(e($comment->comment)) !!}</strong>
+
+                            <br>
+
+                            {{ $comment->getUserName() }}
                             - (<span class="vote_count comment_vote_count" id="{{ $comment->id }}">{{ $comment->votes }}</span>)
                             - <a id="{{ $comment->id }}" class="arrows upvote_arrows comment_arrows">↑</a> 
                             <a id="{{ $comment->id }}" class="arrows comment_arrows">↓</a>
@@ -71,9 +75,9 @@
                                 <button class="btn btn-outline-dark cancel_reply" id="{{ $comment->id}}" href="#">cancel</button>
                             </div>
                             @endguest --}}
-                        </li>          
-                            
+                        </li>              
                     @endif
+                    <hr>
                 @endforeach
                 
             </ul>
