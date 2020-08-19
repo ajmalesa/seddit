@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('content');
             $table->string('author');
-            $table->string('url');
+            $table->string('url', 14000);
             $table->integer('votes')->default('1');
             $table->timestamps();
         });
