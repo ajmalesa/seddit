@@ -70,7 +70,7 @@
                             @else 
                             <a class="reply" id="{{ $comment->id }}" href="#">reply</a>
                             <div hidden class="reply_section" id="{{ $comment->id }}">
-                                <input required class="reply_box" id="{{ $comment->id }}"> 
+                                <textarea required class="reply_box" id="{{ $comment->id }}"></textarea><br><br>
                                 <button class="btn btn-outline-dark post_reply post_reply" id="{{ $comment->id }}">post</button>
                                 <button class="btn btn-outline-dark cancel_reply" id="{{ $comment->id}}" href="#">cancel</button>
                             </div>
