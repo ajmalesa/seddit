@@ -47,11 +47,11 @@
             <ul class="comments_list">
                 {{-- Iterate through each post and add to list --}}
                 @foreach ($comments as $comment)
-                    <hr>
-                    @if($comment->replied_to_id == 0)
-                        <li>
-                            <strong>{!!  nl2br(e($comment->comment)) !!}</strong>
 
+                    @if($comment->replied_to_id == 0)
+                        <hr>
+                        <li>
+                            <strong>{!! nl2br($comment->makeClickableLinks($comment->comment)) !!}</strong>
                             <br>
 
                             {{ $comment->getUserName() }}
@@ -65,8 +65,8 @@
                             </span>
                             
                             <br>
-                            {{-- Temporarily remove replying functionality until I get it working --}}
-                            {{-- @guest <a href="/login">reply</a>
+                            
+                            @guest <a href="/login">reply</a> 
                             @else 
                             <a class="reply" id="{{ $comment->id }}" href="#">reply</a>
                             <div hidden class="reply_section" id="{{ $comment->id }}">
@@ -74,10 +74,44 @@
                                 <button class="btn btn-outline-dark post_reply post_reply" id="{{ $comment->id }}">post</button>
                                 <button class="btn btn-outline-dark cancel_reply" id="{{ $comment->id}}" href="#">cancel</button>
                             </div>
-                            @endguest --}}
-                        </li>              
+                            @endguest
+
+                            @if($comment->checkIfExists($comment->id))
+                                <br>
+                                @foreach($comment->getReplyByCommentById($comment->id) as $commentReply) 
+                                    <br>
+                                    <div class="replies">                                        
+                                        <strong>{!!  nl2br(e($commentReply->comment)) !!}</strong>
+                                        
+                                        <br>
+
+                                        {{ $commentReply->getUserName() }}
+                                        - (<span class="vote_count comment_vote_count" id="{{ $commentReply->id }}">{{ $commentReply->votes }}</span>)
+                                        - <a id="{{ $commentReply->id }}" class="arrows upvote_arrows comment_arrows">↑</a> 
+                                        <a id="{{ $commentReply->id }}" class="arrows comment_arrows">↓</a>
+
+                                        {{-- Show how long ago post was made and exact time/date on hover --}}
+                                        <span title = "{{ $commentReply->created_at->format('m/d/y h:ma') }}">
+                                            {{$commentReply->created_at->diffForHumans()}}
+                                        </span>
+                                        
+                                        <br>
+                                        
+                                        {{-- @guest <a href="/login">reply</a> 
+                                        @else 
+                                        <a class="reply" id="{{ $commentReply->id }}" href="#">reply</a>
+                                        <div hidden class="reply_section" id="{{ $commentReply->id }}">
+                                            <input required class="reply_box" id="{{ $commentReply->id }}"> 
+                                            <button class="btn btn-outline-dark post_reply post_reply" id="{{ $commentReply->id }}">post</button>
+                                            <button class="btn btn-outline-dark cancel_reply" id="{{ $commentReply->id}}" href="#">cancel</button>
+                                        </div>
+                                        @endguest --}}
+                                    </div>
+                                @endforeach
+                            @endif
+                        </li>
+                        <hr>
                     @endif
-                    <hr>
                 @endforeach
                 
             </ul>
