@@ -46,7 +46,7 @@ li {
 }
 
 @media (max-width: 767px) {
-    body, .btn, .arrows {
+    body, .btn, .arrows, .post_links, .vote_count, .col-xs-6 > .h5, .h4 {
         font-size: 0.8rem;
     }
     .navbar-brand {

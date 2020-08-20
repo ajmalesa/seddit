@@ -21,7 +21,7 @@
             <div class="col-xs-6">
                 <h1 class="h4">
                     <a class="post_links" href="{{ $post->url }}" target="_blank">
-                        {{ $post->content }}  
+                        <strong>{{ $post->content }}</strong>
                     </a> 
                     - {{ $post->author }}
                 </h1>
