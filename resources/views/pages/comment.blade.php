@@ -51,7 +51,7 @@
                     @if($comment->replied_to_id == 0)
                         <hr>
                         <li>
-                            <strong>{!!  nl2br(e($comment->comment)) !!}</strong>
+                            <strong>{!! nl2br($comment->makeClickableLinks($comment->comment)) !!}</strong>
                             <br>
 
                             {{ $comment->getUserName() }}
