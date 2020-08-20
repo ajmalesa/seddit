@@ -52,3 +52,11 @@ $(document).on('click', '.post_reply', function() {
     // Refresh the page to show updated comments
     location.reload();
 });
+
+
+// Show hidden comment when show is clicked
+$(document).on('click', '.show-comment-class', function() {
+    document.getElementById('hiddenCommentID-' + this.id.split('-')[1]).classList.remove('d-none');
+    document.getElementById('hiddenCommentMessage-' + this.id.split('-')[1]).classList.add('d-none');
+    
+});

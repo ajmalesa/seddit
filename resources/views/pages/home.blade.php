@@ -15,34 +15,74 @@
     <ol class="posts_list">
         {{-- Iterate through each post and add to list --}}
         @foreach ($posts as $post)
-            <hr />  
-            <li>
-                <a class="post_links" href="{{ $post->url }}" target="_blank">
-                    <strong>{{ $post->content }}</strong>
-                </a> 
-                - {{ $post->author }}
-                - (<span class="vote_count" id="{{ $post->id }}">{{ $post->votes }}</span>)
-                @if (Auth::check())
-                    - <a id="{{ $post->id }}" class="arrows upvote_arrows all_posts_arrow">↑</a> 
-                      <a id="{{ $post->id }}" class="arrows all_posts_arrow">↓</a>
-                @else 
-                    - <a href="/register" class="arrows upvote_arrows all_posts_arrow">↑</a> 
-                      <a href="/register" class="arrows all_posts_arrow">↓</a>
-                @endif
-            </li> 
-            
-            <a href="comment/{{ $post->id }}"> {{ $comments->where('post_id', $post->id)->count() }} comments</a>
-            {{-- {{ $users->where('user_id', $comment->user_id)->count() }} --}}
+            @if ($post->votes < 0) 
+                <span id="hiddenCommentMessage-{{ $post->id }}">
+                    <hr />
+                    <p>Post hidden due to downvotes. <button class="btn btn-outline-dark btn-sm show-comment-class" id="showCommentID-{{ $post->id }}">show</button></p> 
+                    <hr />
+                </span>
+                <div class="individual_post d-none" id="hiddenCommentID-{{ $post->id }}"> 
+                    <hr />  
+                    <li>
+                        <a class="post_links" href="{{ $post->url }}" target="_blank">
+                            <strong>{{ $post->content }}</strong>
+                        </a> 
+                        - {{ $post->author }}
+                        - (<span class="vote_count" id="{{ $post->id }}">{{ $post->votes }}</span>)
+                        @if (Auth::check())
+                            - <a id="{{ $post->id }}" class="arrows upvote_arrows all_posts_arrow">↑</a> 
+                            <a id="{{ $post->id }}" class="arrows all_posts_arrow">↓</a>
+                        @else 
+                            - <a href="/register" class="arrows upvote_arrows all_posts_arrow">↑</a> 
+                            <a href="/register" class="arrows all_posts_arrow">↓</a>
+                        @endif
+                    </li> 
+                    
+                    <a href="comment/{{ $post->id }}"> {{ $comments->where('post_id', $post->id)->count() }} comments</a>
+                    {{-- {{ $users->where('user_id', $comment->user_id)->count() }} --}}
 
-            @if (Auth::check() && Auth::user()->username == $post->author)
-                    <a href="delete/{{ $post->id }}">delete</a>
+                    @if (Auth::check() && Auth::user()->username == $post->author)
+                            <a href="delete/{{ $post->id }}">delete</a>
+                    @endif
+
+                    {{-- Show how long ago post was made and exact time/date on hover --}}
+                    <span title = "{{ $post->created_at->format('m/d/y h:ma') }}">
+                        {{ $post->created_at->diffForHumans() }}
+                    </span>    
+                    <hr />     
+                </div>
+            @else
+                <div class="individual_post">
+                    <hr />  
+                    <li>
+                        <a class="post_links" href="{{ $post->url }}" target="_blank">
+                            <strong>{{ $post->content }}</strong>
+                        </a> 
+                        - {{ $post->author }}
+                        - (<span class="vote_count" id="{{ $post->id }}">{{ $post->votes }}</span>)
+                        @if (Auth::check())
+                            - <a id="{{ $post->id }}" class="arrows upvote_arrows all_posts_arrow">↑</a> 
+                            <a id="{{ $post->id }}" class="arrows all_posts_arrow">↓</a>
+                        @else 
+                            - <a href="/register" class="arrows upvote_arrows all_posts_arrow">↑</a> 
+                            <a href="/register" class="arrows all_posts_arrow">↓</a>
+                        @endif
+                    </li> 
+                    
+                    <a href="comment/{{ $post->id }}"> {{ $comments->where('post_id', $post->id)->count() }} comments</a>
+                    {{-- {{ $users->where('user_id', $comment->user_id)->count() }} --}}
+
+                    @if (Auth::check() && Auth::user()->username == $post->author)
+                            <a href="delete/{{ $post->id }}">delete</a>
+                    @endif
+
+                    {{-- Show how long ago post was made and exact time/date on hover --}}
+                    <span title = "{{ $post->created_at->format('m/d/y h:ma') }}">
+                        {{ $post->created_at->diffForHumans() }}
+                    </span>    
+                    <hr />     
+                </div>
             @endif
-
-            {{-- Show how long ago post was made and exact time/date on hover --}}
-            <span title = "{{ $post->created_at->format('m/d/y h:ma') }}">
-                {{ $post->created_at->diffForHumans() }}
-            </span>    
-            <hr />        
         @endforeach
     </ol>
 
