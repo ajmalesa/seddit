@@ -52,7 +52,6 @@
                         <hr>
                         <li>
                             <strong>{!!  nl2br(e($comment->comment)) !!}</strong>
-                            id is {{ $comment->id }}
                             <br>
 
                             {{ $comment->getUserName() }}
@@ -83,7 +82,7 @@
                                     <br>
                                     <div class="replies">                                        
                                         <strong>{!!  nl2br(e($commentReply->comment)) !!}</strong>
-                                        id is {{ $commentReply->id }}
+                                        
                                         <br>
 
                                         {{ $commentReply->getUserName() }}
