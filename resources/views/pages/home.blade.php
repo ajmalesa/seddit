@@ -18,7 +18,7 @@
         @foreach ($posts as $post)
             @if ($post->votes < 0) 
                 <span id="hiddenCommentMessage-{{ $post->id }}">
-                    <p>Post hidden due to downvotes. <button class="btn btn-outline-dark btn-sm show-comment-class" id="showCommentID-{{ $post->id }}">show</button></p> 
+                    <p>post hidden due to downvotes <button class="btn btn-outline-dark btn-sm show-comment-class" id="showCommentID-{{ $post->id }}">show</button></p> 
                     
                 </span>
                 <div class="individual_post d-none" id="hiddenCommentID-{{ $post->id }}"> 
