@@ -17,7 +17,9 @@ class Comment extends Model
     }
 
     public function getReplyByCommentById($id) {
-
+        if (substr(url()->current(), -3) == "top") {
+            return Comment::orderBy('votes', 'DESC')->where('replied_to_id', $id)->get();
+        }
         return Comment::orderBy('created_at', 'DESC')->where('replied_to_id', $id)->get();
     }
 
