@@ -28,27 +28,21 @@
             </div>
         </div>
 
-        <form class="pt-3 pb-3" autocomplete="off" id="create_form" action="{{ $post->id }}/reply" method="post">
-            @csrf
-            @guest @else <textarea required placeholder="type your comment here" class="form-control w-75" type="text" name="comment"></textarea><br>@endguest
-            <button class="btn btn-outline-dark" type="submit">post comment</button>
-
-            <input hidden class="form-control" type="text" name="user_id" readonly value="@guest @else {{ Auth::user()->id }}@endguest">
-            <input hidden class="form-control" type="text" name="replied_to_id" readonly value="0">
-            <input hidden class="form-control" type="text" name="post_id" readonly value="{{ $post->id }}">
-        </form>
-
-        <a class="btn btn-outline-dark @if(Request::is('*home') || !Request::is('*top')) {{ "active" }} @endif" href="../../comment/{{ $post->id }}">new</a>
-        <a class="btn btn-outline-dark @if(Request::is('*top')) {{ "active" }} @endif" href="../../comment/{{ $post->id }}/top">top</a>
+        <div class="sort-comments-row">
+            <a class="btn btn-outline-dark @if(Request::is('*home') || !Request::is('*top')) {{ "active" }} @endif" href="../../comment/{{ $post->id }}">new</a>
+            <a class="btn btn-outline-dark @if(Request::is('*top')) {{ "active" }} @endif" href="../../comment/{{ $post->id }}/top">top</a>
+        </div>
 
         <div class="row">
             <ul class="comments_list">
                 <br >
                 {{-- Iterate through each post and add to list --}}
                 @foreach ($comments as $comment)
-
+                    
                     @if($comment->replied_to_id == 0)
+                    <div class="comment-chain">
                         
+                   
                         <li>
                             <strong>{!! nl2br($comment->makeClickableLinks($comment->comment)) !!}</strong>
                             <br>
@@ -77,7 +71,8 @@
                             
 
                             @if($comment->checkIfExists($comment->id))
-                                <br>
+                                
+                                <br />
                                 @foreach($comment->getReplyByCommentById($comment->id) as $commentReply) 
                                     <br>
                                     <div class="replies">                                        
@@ -148,14 +143,24 @@
                                 @endforeach
                             @endif
                         </li>
-                        @if (!$loop->last)
-                            <hr />
-                        @endif
+                        </div>
                     @endif
+
+                    
                 @endforeach
                 
             </ul>
         </div>
+
+        <form class="pt-1 pb-3" autocomplete="off" id="create_form" action="{{ $post->id }}/reply" method="post">
+            @csrf
+            @guest @else <textarea required placeholder="type your comment here" class="form-control w-75" type="text" name="comment"></textarea><br>@endguest
+            <button class="btn btn-outline-dark" type="submit">post comment</button>
+
+            <input hidden class="form-control" type="text" name="user_id" readonly value="@guest @else {{ Auth::user()->id }}@endguest">
+            <input hidden class="form-control" type="text" name="replied_to_id" readonly value="0">
+            <input hidden class="form-control" type="text" name="post_id" readonly value="{{ $post->id }}">
+        </form>
     </div>
 
     <script type="text/javascript">
