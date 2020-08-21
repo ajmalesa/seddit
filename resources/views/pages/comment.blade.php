@@ -82,7 +82,7 @@
                                 @foreach($comment->getReplyByCommentById($comment->id) as $commentReply) 
                                     <br>
                                     <div class="replies">                                        
-                                        <strong>{!!  nl2br(e($commentReply->comment)) !!}</strong>
+                                        <strong>{!! nl2br($commentReply->makeClickableLinks($commentReply->comment)) !!}</strong>
                                         
                                         <br>
 
@@ -114,7 +114,8 @@
                                             @foreach($commentReply->getReplyByCommentById($commentReply->id) as $commentReply2) 
                                                 <br>
                                                 <div class="replies">                                        
-                                                    <strong>{!!  nl2br(e($commentReply2->comment)) !!}</strong>
+                                                    <strong>{!! nl2br($commentReply2->makeClickableLinks($commentReply2->comment)) !!}</strong>
+                                                    
                                                     
                                                     <br>
             
