@@ -98,7 +98,7 @@
                                         
                                         <br>
                                         
-                                        {{-- @guest <a href="/login">reply</a> 
+                                        @guest <a href="/login">reply</a> 
                                         @else 
                                         <a class="reply" id="{{ $commentReply->id }}" href="#">reply</a>
                                         <div hidden class="reply_section" id="{{ $commentReply->id }}">
@@ -106,7 +106,44 @@
                                             <button class="btn btn-outline-dark post_reply post_reply" id="{{ $commentReply->id }}">post</button>
                                             <button class="btn btn-outline-dark cancel_reply" id="{{ $commentReply->id}}" href="#">cancel</button>
                                         </div>
-                                        @endguest --}}
+                                        @endguest
+
+
+                                        @if($commentReply->checkIfExists($commentReply->id))
+                                            <br>
+                                            @foreach($commentReply->getReplyByCommentById($commentReply->id) as $commentReply2) 
+                                                <br>
+                                                <div class="replies">                                        
+                                                    <strong>{!!  nl2br(e($commentReply2->comment)) !!}</strong>
+                                                    
+                                                    <br>
+            
+                                                    {{ $commentReply2->getUserName() }}
+                                                    - (<span class="vote_count comment_vote_count" id="{{ $commentReply2->id }}">{{ $commentReply2->votes }}</span>)
+                                                    - <a id="{{ $commentReply2->id }}" class="arrows upvote_arrows comment_arrows">↑</a> 
+                                                    <a id="{{ $commentReply2->id }}" class="arrows comment_arrows">↓</a>
+            
+                                                    {{-- Show how long ago post was made and exact time/date on hover --}}
+                                                    <span title = "{{ $commentReply2->created_at->format('m/d/y h:ma') }}">
+                                                        {{$commentReply2->created_at->diffForHumans()}}
+                                                    </span>
+                                                    
+                                                    <br>
+                                                    
+                                                    @guest <a href="/login">reply</a> 
+                                                    @else 
+                                                    <a class="reply" id="{{ $commentReply2->id }}" href="#">reply</a>
+                                                    <div hidden class="reply_section" id="{{ $commentReply2->id }}">
+                                                        <input required class="reply_box" id="{{ $commentReply2->id }}"> 
+                                                        <button class="btn btn-outline-dark post_reply post_reply" id="{{ $commentReply2->id }}">post</button>
+                                                        <button class="btn btn-outline-dark cancel_reply" id="{{ $commentReply2->id}}" href="#">cancel</button>
+                                                    </div>
+                                                    @endguest
+                                                </div>
+                                            @endforeach
+                                        @endif
+
+
                                     </div>
                                 @endforeach
                             @endif
