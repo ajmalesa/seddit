@@ -155,7 +155,7 @@
         <form class="pt-1 pb-3" autocomplete="off" id="create_form" action="{{ $post->id }}/reply" method="post">
             @csrf
             @guest @else <textarea required placeholder="type your comment here" class="form-control w-50" type="text" name="comment"></textarea><br>@endguest
-            <button class="btn btn-outline-dark" type="submit">post comment</button>
+            <button class="btn btn-outline-dark" @guest @else type="submit" @endguest>post comment</button>
 
             <input hidden class="form-control" type="text" name="user_id" readonly value="@guest @else {{ Auth::user()->id }}@endguest">
             <input hidden class="form-control" type="text" name="replied_to_id" readonly value="0">
