@@ -37,11 +37,9 @@
             <input hidden class="form-control" type="text" name="replied_to_id" readonly value="0">
             <input hidden class="form-control" type="text" name="post_id" readonly value="{{ $post->id }}">
         </form>
-        
-        <select class="form-control w-25 mb-2" onChange="window.location.href=this.value" id="sort_order" name="sort">
-            <li><option value="/comment/{{ $post->id }}">new</option></li>
-            <li><option @if(Request::is('*top')) {{ "selected" }} @endif value="../comment/{{ $post->id }}/top">top</option></li>
-        </select>
+
+        <a class="btn btn-outline-dark @if(Request::is('*home') || !Request::is('*top')) {{ "active" }} @endif" href="../../comment/{{ $post->id }}">new</a>
+        <a class="btn btn-outline-dark @if(Request::is('*top')) {{ "active" }} @endif" href="../../comment/{{ $post->id }}/top">top</a>
 
         <div class="row">
             <ul class="comments_list">
