@@ -89,6 +89,6 @@
     </ol>
     <br />
 
-    <a class="btn btn-outline-dark" href="create"><span class="submit">submit new post</span></a>
+    <a class="btn btn-outline-dark" href="create"><span class="submit">submit post</span></a>
 
 @endsection
