@@ -95,8 +95,8 @@
                                         @guest <a href="/login">reply</a> 
                                         @else 
                                         <a class="reply" id="{{ $commentReply->id }}" href="#">reply</a>
-                                        <div hidden class="reply_section" id="{{ $commentReply->id }}">
-                                            <input required class="reply_box" id="{{ $commentReply->id }}"> 
+                                        <div hidden class="reply_section" id="{{ $commentReply->id }}"><br>
+                                            <textarea required class="reply_box w-100" id="{{ $commentReply->id }}"></textarea><br /><br />
                                             <button class="btn btn-outline-dark post_reply post_reply" id="{{ $commentReply->id }}">post</button>
                                             <button class="btn btn-outline-dark cancel_reply" id="{{ $commentReply->id}}" href="#">cancel</button>
                                         </div>
@@ -128,8 +128,8 @@
                                                     @guest <a href="/login">reply</a> 
                                                     @else 
                                                     <a class="reply" id="{{ $commentReply2->id }}" href="#">reply</a>
-                                                    <div hidden class="reply_section" id="{{ $commentReply2->id }}">
-                                                        <input required class="reply_box" id="{{ $commentReply2->id }}"> 
+                                                    <div hidden class="reply_section" id="{{ $commentReply2->id }}"><br />
+                                                        <textarea required class="reply_box w-100" id="{{ $commentReply2->id }}"></textarea><br /><br />
                                                         <button class="btn btn-outline-dark post_reply post_reply" id="{{ $commentReply2->id }}">post</button>
                                                         <button class="btn btn-outline-dark cancel_reply" id="{{ $commentReply2->id}}" href="#">cancel</button>
                                                     </div>
@@ -154,7 +154,7 @@
 
         <form class="pt-1 pb-3" autocomplete="off" id="create_form" action="{{ $post->id }}/reply" method="post">
             @csrf
-            @guest @else <textarea required placeholder="type your comment here" class="form-control w-75" type="text" name="comment"></textarea><br>@endguest
+            @guest @else <textarea required placeholder="type your comment here" class="form-control w-50" type="text" name="comment"></textarea><br>@endguest
             <button class="btn btn-outline-dark" type="submit">post comment</button>
 
             <input hidden class="form-control" type="text" name="user_id" readonly value="@guest @else {{ Auth::user()->id }}@endguest">
