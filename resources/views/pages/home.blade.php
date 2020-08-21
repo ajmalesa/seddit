@@ -11,18 +11,17 @@
 
     <a class="btn btn-outline-dark @if(Request::is('*home') || !Request::is('*top')) {{ "active" }} @endif" href="/home">new</a>
     <a class="btn btn-outline-dark @if(Request::is('*top')) {{ "active" }} @endif" href="/top">top</a>
-
+    
     <ol class="posts_list">
+        <br />
         {{-- Iterate through each post and add to list --}}
         @foreach ($posts as $post)
             @if ($post->votes < 0) 
                 <span id="hiddenCommentMessage-{{ $post->id }}">
-                    <hr />
                     <p>Post hidden due to downvotes. <button class="btn btn-outline-dark btn-sm show-comment-class" id="showCommentID-{{ $post->id }}">show</button></p> 
-                    <hr />
+                    
                 </span>
                 <div class="individual_post d-none" id="hiddenCommentID-{{ $post->id }}"> 
-                    <hr />  
                     <li>
                         <a class="post_links" href="{{ $post->url }}" target="_blank">
                             <strong>{{ $post->content }}</strong>
@@ -48,12 +47,12 @@
                     {{-- Show how long ago post was made and exact time/date on hover --}}
                     <span title = "{{ $post->created_at->format('m/d/y h:ma') }}">
                         {{ $post->created_at->diffForHumans() }}
-                    </span>    
-                    <hr />     
+                    </span>  
+
                 </div>
             @else
                 <div class="individual_post">
-                    <hr />  
+                    
                     <li>
                         <a class="post_links" href="{{ $post->url }}" target="_blank">
                             <strong>{{ $post->content }}</strong>
@@ -80,11 +79,15 @@
                     <span title = "{{ $post->created_at->format('m/d/y h:ma') }}">
                         {{ $post->created_at->diffForHumans() }}
                     </span>    
-                    <hr />     
+
                 </div>
+            @endif
+            @if (!$loop->last) 
+                <hr />
             @endif
         @endforeach
     </ol>
+    <br />
 
     <a class="btn btn-outline-dark" href="create"><span class="submit">submit new post</span></a>
 
