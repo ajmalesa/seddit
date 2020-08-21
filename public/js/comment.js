@@ -41,16 +41,16 @@ $(document).on('click', '.post_reply', function() {
     $.ajax({
         type:'POST',
         url: '/comment/' + replied_to_id + '/reply',
+        success: function() {
+            location.reload();
+        },
         data: {
             replied_to_id:replied_to_id,
             comment:reply,
             user_id:user_id,
             post_id:post_id
-        }
+        },
     });
-
-    // Refresh the page to show updated comments
-    location.reload();
 });
 
 
