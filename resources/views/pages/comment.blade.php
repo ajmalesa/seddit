@@ -45,11 +45,12 @@
 
         <div class="row">
             <ul class="comments_list">
+                <br >
                 {{-- Iterate through each post and add to list --}}
                 @foreach ($comments as $comment)
 
                     @if($comment->replied_to_id == 0)
-                        <hr>
+                        
                         <li>
                             <strong>{!! nl2br($comment->makeClickableLinks($comment->comment)) !!}</strong>
                             <br>
@@ -149,7 +150,9 @@
                                 @endforeach
                             @endif
                         </li>
-                        <hr>
+                        @if (!$loop->last)
+                            <hr />
+                        @endif
                     @endif
                 @endforeach
                 
