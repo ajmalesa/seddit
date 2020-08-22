@@ -33,7 +33,7 @@
             <a class="btn btn-outline-dark @if(Request::is('*top')) {{ "active" }} @endif" href="../../comment/{{ $post->id }}/top">top</a>
         </div>
 
-        <div class="row">
+        <div>
             <ul class="comments_list">
                 <br >
                 {{-- Iterate through each post and add to list --}}
