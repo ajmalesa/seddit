@@ -56,13 +56,19 @@ li {
 }
 
 .replies {
-    margin-left: 15px;
+    margin-left: 35px;
 }
 
-.comment-chain {
-    border: #ebedf0 1px solid;
+.comment-chain{
+    border: #c6c8ca 1px solid;
     padding: 20px;
     margin-bottom: 20px;
+}
+
+.individual_post {
+    border: #c6c8ca 1px solid;
+    padding: 20px;
+    margin-bottom: 10px;
 }
 
 .sort-comments-row {
