@@ -86,9 +86,21 @@ li {
     margin-left: 7px;
 }
 
+.hiddenPostParagraphTag {
+    padding: 20px;
+    border: 1px solid #dc3545;
+    color: #dc3545;
+    margin-bottom: 10px;
+}
+
 @media (min-width: 768px) {
     .individual_post {
         padding-bottom: 30px;
+        padding-left: 45px;
+    }
+    .hiddenPostParagraphTag {
+        padding-bottom: 40px;
+        padding-top: 40px;
         padding-left: 45px;
     }
 }
@@ -97,10 +109,4 @@ li {
     margin-bottom: 5%;
 }
 
-.hiddenPostParagraphTag {
-    padding: 35px;
-    border: 1px solid #dc3545;
-    color: #dc3545;
-    margin-bottom: 10px;
-}
 
