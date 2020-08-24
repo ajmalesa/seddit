@@ -18,7 +18,7 @@
         @foreach ($posts as $post)
             @if ($post->votes < 0) 
                 <span id="hiddenPostMessage-{{ $post->id }}" class="hiddenPostMessageClass">
-                    <p class="hiddenPostParagraphTag">post hidden due to downvotes <button class="btn btn-outline-dark btn-sm show-post-class" id="showPostID-{{ $post->id }}">show</button></p> 
+                    <p class="hiddenPostParagraphTag">post hidden due to downvotes <button class="btn btn-outline-danger btn-sm show-post-class" id="showPostID-{{ $post->id }}">show</button></p> 
                     
                 </span>
                 <div class="individual_post d-none" id="hiddenPostID-{{ $post->id }}"> 
