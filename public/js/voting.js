@@ -19,9 +19,9 @@ $(document).on('click', '.arrows', function() {
         point += 1;
         $(this).addClass('voted_up');
         // Run for comment arrows only
-        if ($(this.parentElement)[0].children[2].classList.contains('comment_arrows')) {
-            if($(this.parentElement)[0].children[3].classList.contains('voted_down')) {
-                $(this.parentElement)[0].children[3].classList.remove('voted_down');
+        if ($(this.parentElement)[0].children[3].classList.contains('comment_arrows')) {
+            if($(this.parentElement)[0].children[4].classList.contains('voted_down')) {
+                $(this.parentElement)[0].children[4].classList.remove('voted_down');
                 point += 1;
             }
         } 
@@ -43,9 +43,9 @@ $(document).on('click', '.arrows', function() {
         point -= 1;
         $(this).addClass('voted_down');
         // Run this code for comment arrows only
-        if ($(this.parentElement)[0].children[2].classList.contains('comment_arrows')) {
-            if( $(this.parentElement)[0].children[2].classList.contains('voted_up')) {
-                $(this.parentElement)[0].children[2].classList.remove('voted_up');
+        if ($(this.parentElement)[0].children[4].classList.contains('comment_arrows')) {
+            if( $(this.parentElement)[0].children[3].classList.contains('voted_up')) {
+                $(this.parentElement)[0].children[3].classList.remove('voted_up');
                 point -= 1;
             }
         } 
