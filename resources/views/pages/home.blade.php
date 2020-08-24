@@ -17,11 +17,11 @@
         {{-- Iterate through each post and add to list --}}
         @foreach ($posts as $post)
             @if ($post->votes < 0) 
-                <span id="hiddenCommentMessage-{{ $post->id }}">
-                    <p>post hidden due to downvotes <button class="btn btn-outline-dark btn-sm show-comment-class" id="showCommentID-{{ $post->id }}">show</button></p> 
+                <span id="hiddenPostMessage-{{ $post->id }}" class="hiddenPostMessageClass">
+                    <p class="hiddenPostParagraphTag">post hidden due to downvotes <button class="btn btn-outline-dark btn-sm show-post-class" id="showPostID-{{ $post->id }}">show</button></p> 
                     
                 </span>
-                <div class="individual_post d-none" id="hiddenCommentID-{{ $post->id }}"> 
+                <div class="individual_post d-none" id="hiddenPostID-{{ $post->id }}"> 
                     <li>
                         <a class="post_links" href="{{ $post->url }}" target="_blank">
                             <strong>{{ $post->content }}</strong>
@@ -82,13 +82,12 @@
 
                 </div>
             @endif
-            @if (!$loop->last) 
-                <hr />
-            @endif
         @endforeach
     </ol>
     <br />
 
-    <a class="btn btn-outline-dark" href="create"><span class="submit">submit post</span></a>
+    <div class="submit-container">
+        <a class="btn btn-outline-dark" href="create"><span class="submit">submit post</span></a>
+    </div>
 
 @endsection

@@ -69,8 +69,35 @@ li {
     border: #c6c8ca 1px solid;
     padding: 20px;
     margin-bottom: 10px;
+    animation-name: fadeIn;
+    animation-duration: .5s;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0.2;}
+    to {opacity: 1}
 }
 
 .sort-comments-row {
     margin-top: 3%;
 }
+
+.show-post-class {
+    margin-left: 7px;
+}
+
+@media (min-width: 768px) {
+    .individual_post {
+        padding-bottom: 30px;
+        padding-left: 45px;
+    }
+}
+
+.submit-container {
+    margin-bottom: 5%;
+}
+
+.hiddenPostParagraphTag {
+    margin-left: 45px;
+}
+

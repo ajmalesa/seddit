@@ -54,9 +54,8 @@ $(document).on('click', '.post_reply', function() {
 });
 
 
-// Show hidden comment when show is clicked
-$(document).on('click', '.show-comment-class', function() {
-    document.getElementById('hiddenCommentID-' + this.id.split('-')[1]).classList.remove('d-none');
-    document.getElementById('hiddenCommentMessage-' + this.id.split('-')[1]).classList.add('d-none');
-    
+// Show hidden post when show is clicked and hide show post display message
+$(document).on('click', '.show-post-class', function() {
+    document.getElementById('hiddenPostID-' + this.id.split('-')[1]).classList.remove('d-none');
+    document.getElementById('hiddenPostMessage-' + this.id.split('-')[1]).classList.add('d-none');
 });
