@@ -13,8 +13,13 @@
             <div class="col-xs-6">
                 <h1 class="h5">
                     (<span class="vote_count" id="{{ $post->id }}">{{ $post->votes }}</span>)
-                    <a id="{{ $post->id }}" class="arrows upvote_arrows current_post_arrows">↑</a> 
-                    <a id="{{ $post->id }}" class="arrows current_post_arrows">↓</a>&nbsp;-&nbsp;
+                    @guest 
+                        - <a href="/register" class="arrows upvote_arrows current_post_arrows">↑</a> 
+                        <a href="/register" class="arrows current_post_arrows">↓</a>&nbsp;-&nbsp;
+                    @else 
+                        <a id="{{ $post->id }}" class="arrows upvote_arrows current_post_arrows">↑</a> 
+                        <a id="{{ $post->id }}" class="arrows current_post_arrows">↓</a>&nbsp;-&nbsp;
+                    @endguest
                 </h1>
             </div>
 
@@ -43,7 +48,7 @@
                     <div class="comment-chain">
                         
                    
-                        <li>
+                        <li class="comment-box">
                             <strong>{!! nl2br($comment->makeClickableLinks($comment->comment)) !!}</strong>
                             <br>
 

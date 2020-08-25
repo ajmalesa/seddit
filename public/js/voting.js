@@ -19,12 +19,15 @@ $(document).on('click', '.arrows', function() {
         point += 1;
         $(this).addClass('voted_up');
         // Run for comment arrows only
-        if ($(this.parentElement)[0].children[3].classList.contains('comment_arrows')) {
-            if($(this.parentElement)[0].children[4].classList.contains('voted_down')) {
-                $(this.parentElement)[0].children[4].classList.remove('voted_down');
-                point += 1;
-            }
-        } 
+        if(this.parentElement.classList.contains('comment-box')) {
+            if ($(this.parentElement)[0].children[3].classList.contains('comment_arrows')) {
+                if($(this.parentElement)[0].children[4].classList.contains('voted_down')) {
+                    $(this.parentElement)[0].children[4].classList.remove('voted_down');
+                    point += 1;
+                }
+            } 
+        }
+
         // Run for votes on the currently opened post only
         else if(this.classList.contains('current_post_arrows')) {
             if(this.parentElement.children[2].classList.contains('voted_down')) {
@@ -43,12 +46,14 @@ $(document).on('click', '.arrows', function() {
         point -= 1;
         $(this).addClass('voted_down');
         // Run this code for comment arrows only
-        if ($(this.parentElement)[0].children[4].classList.contains('comment_arrows')) {
-            if( $(this.parentElement)[0].children[3].classList.contains('voted_up')) {
-                $(this.parentElement)[0].children[3].classList.remove('voted_up');
-                point -= 1;
-            }
-        } 
+        if(this.parentElement.classList.contains('comment-box')) {
+            if ($(this.parentElement)[0].children[4].classList.contains('comment_arrows')) {
+                if( $(this.parentElement)[0].children[3].classList.contains('voted_up')) {
+                    $(this.parentElement)[0].children[3].classList.remove('voted_up');
+                    point -= 1;
+                }
+            } 
+        }
         // Run for votes on the currently opened post only
         else if (this.classList.contains('current_post_arrows')) {
             if(this.parentElement.children[1].classList.contains('voted_up')) {
