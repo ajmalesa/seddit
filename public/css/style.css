@@ -64,6 +64,7 @@ li {
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 3px 3px 6px grey;
+    overflow-wrap: break-word;
 }
 
 .individual_post {
