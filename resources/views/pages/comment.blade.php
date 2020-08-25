@@ -49,8 +49,13 @@
 
                             {{ $comment->getUserName() }}
                             - (<span class="vote_count comment_vote_count" id="{{ $comment->id }}">{{ $comment->votes }}</span>)
-                            - <a id="{{ $comment->id }}" class="arrows upvote_arrows comment_arrows">↑</a> 
-                            <a id="{{ $comment->id }}" class="arrows comment_arrows">↓</a>
+                            @guest 
+                                - <a href="/register" class="upvote_arrows comment_arrows">↑</a> 
+                                <a href="/register" class="comment_arrows">↓</a>
+                            @else 
+                                - <a id="{{ $comment->id }}" class="arrows @if (Auth::check()) @if (Auth::user()->getVoteForComment(Auth::user()->id , $comment->id) == 1) voted_up @endif @endif upvote_arrows comment_arrows">↑</a> 
+                                <a id="{{ $comment->id }}" class="arrows @if (Auth::check()) @if (Auth::user()->getVoteForComment(Auth::user()->id , $comment->id) == -1) voted_down @endif @endif comment_arrows">↓</a>
+                            @endguest
 
                             {{-- Show how long ago post was made and exact time/date on hover --}}
                             <span title = "{{ $comment->created_at->format('m/d/y h:ma') }}">
@@ -82,8 +87,14 @@
 
                                         {{ $commentReply->getUserName() }}
                                         - (<span class="vote_count comment_vote_count" id="{{ $commentReply->id }}">{{ $commentReply->votes }}</span>)
-                                        - <a id="{{ $commentReply->id }}" class="arrows upvote_arrows comment_arrows">↑</a> 
-                                        <a id="{{ $commentReply->id }}" class="arrows comment_arrows">↓</a>
+
+                                        @guest 
+                                            - <a href="/register" class="upvote_arrows comment_arrows">↑</a> 
+                                            <a href="/register" class="comment_arrows">↓</a>
+                                        @else 
+                                            - <a id="{{ $commentReply->id }}" class="arrows @if (Auth::check()) @if(Auth::user()->getVoteForComment(Auth::user()->id , $commentReply->id) == 1) voted_up @endif @endif upvote_arrows comment_arrows">↑</a> 
+                                            <a id="{{ $commentReply->id }}" class="arrows @if (Auth::check()) @if(Auth::user()->getVoteForComment(Auth::user()->id , $commentReply->id) == -1) voted_down @endif @endif comment_arrows">↓</a>
+                                        @endguest
 
                                         {{-- Show how long ago post was made and exact time/date on hover --}}
                                         <span title = "{{ $commentReply->created_at->format('m/d/y h:ma') }}">
@@ -115,8 +126,13 @@
             
                                                     {{ $commentReply2->getUserName() }}
                                                     - (<span class="vote_count comment_vote_count" id="{{ $commentReply2->id }}">{{ $commentReply2->votes }}</span>)
-                                                    - <a id="{{ $commentReply2->id }}" class="arrows upvote_arrows comment_arrows">↑</a> 
-                                                    <a id="{{ $commentReply2->id }}" class="arrows comment_arrows">↓</a>
+                                                    @guest 
+                                                        - <a href="/register" class="upvote_arrows comment_arrows">↑</a> 
+                                                        <a href="/register" class="comment_arrows">↓</a>
+                                                    @else 
+                                                        - <a id="{{ $commentReply2->id }}" class="arrows @if (Auth::check()) @if(Auth::user()->getVoteForComment(Auth::user()->id , $commentReply2->id) == 1) voted_up @endif @endif upvote_arrows comment_arrows">↑</a> 
+                                                        <a id="{{ $commentReply2->id }}" class="arrows @if (Auth::check()) @if(Auth::user()->getVoteForComment(Auth::user()->id , $commentReply2->id) == -1) voted_down @endif @endif comment_arrows">↓</a>
+                                                    @endguest
             
                                                     {{-- Show how long ago post was made and exact time/date on hover --}}
                                                     <span title = "{{ $commentReply2->created_at->format('m/d/y h:ma') }}">

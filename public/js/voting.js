@@ -79,6 +79,15 @@ $(document).on('click', '.arrows', function() {
     // post that the arrows was clicked on
     var id = this.id;
 
+    // Store what type of vote was made to pass to backend
+    let voteType = 'none';
+    if(this.classList.contains('voted_up')) {
+        voteType = "upvote";
+    } else if(this.classList.contains('voted_down')) {
+        voteType = "downvote";
+    }
+
+
     // Send AJAX post to index page '/' with the id of element to update
     // and point amount to increment or decrement by
     if($(this).hasClass('comment_arrows')) {
@@ -89,7 +98,11 @@ $(document).on('click', '.arrows', function() {
         $.ajax({
             type:'POST',
             url:'/comment/' + id,
-            data:{id:id, point:point}      
+            data:{
+                id:id, 
+                point:point,
+                voteType
+            }      
         });
     } else {
         // Update point count for post at front-end
@@ -99,7 +112,10 @@ $(document).on('click', '.arrows', function() {
         $.ajax({
             type:'POST',
             url:'/',
-            data:{id:id, point:point}      
+            data:{
+                id:id, 
+                point:point
+            }      
         });
     }
 });
