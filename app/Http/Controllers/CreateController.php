@@ -37,4 +37,17 @@ class CreateController extends Controller
         return redirect("/");
     }
 
+    
+    public function delete() 
+    {
+        // Retrieve post from db by id passed from view
+        $post = Post::find(request()->id);
+
+        // Delete post from db
+        $post->delete();
+
+        // Return to home page
+        return redirect("/");
+    }
+
 }
