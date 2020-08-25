@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
     public function getUserName() {
         $user = User::where('id', $this->user_id)->get('username');
 
@@ -26,4 +31,6 @@ class Comment extends Model
     public function makeClickableLinks($comment) {
         return preg_replace('@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank">$1</a>', $comment);
     }
+
+    
 }
