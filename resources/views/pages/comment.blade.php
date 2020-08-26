@@ -9,7 +9,7 @@
 @section('content')
 
     <div class="container">
-        <div class="row">
+        <div class="row current_post_row">
             <div class="col-xs-6">
                 <h1 class="h5">
                     (<span class="vote_count" id="{{ $post->id }}">{{ $post->votes }}</span>)

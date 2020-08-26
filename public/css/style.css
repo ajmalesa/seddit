@@ -111,4 +111,9 @@ li {
     margin-bottom: 5%;
 }
 
-
+.current_post_row {
+    border: #c6c8ca 1px solid;
+    box-shadow: 3px 3px 6px grey;
+    padding: 20px;
+    overflow-wrap: anywhere;
+}
