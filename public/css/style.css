@@ -71,13 +71,14 @@ li {
     border: #c6c8ca 1px solid;
     padding: 20px;
     margin-bottom: 10px;
+    box-shadow: 3px 3px 6px grey;
     animation-name: fadeIn;
     animation-duration: .5s;
 }
 
 @keyframes fadeIn {
     from {opacity: 0.2;}
-    to {opacity: 1}
+    to {opacity: 1;}
 }
 
 .sort-comments-row {
@@ -93,6 +94,7 @@ li {
     border: 1px solid #dc3545;
     color: #dc3545;
     margin-bottom: 10px;
+    box-shadow: 3px 3px 6px #dc3545;
 }
 
 @media (min-width: 768px) {
