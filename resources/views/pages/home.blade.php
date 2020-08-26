@@ -38,7 +38,6 @@
                     </li> 
                     
                     <a href="comment/{{ $post->id }}"> {{ $comments->where('post_id', $post->id)->count() }} comments</a>
-                    {{-- {{ $users->where('user_id', $comment->user_id)->count() }} --}}
 
                     @if (Auth::check() && Auth::user()->username == $post->author)
                             <a href="delete/{{ $post->id }}">delete</a>
@@ -68,7 +67,15 @@
                         @endif
                     </li> 
                     
-                    <a href="comment/{{ $post->id }}"> {{ $comments->where('post_id', $post->id)->count() }} comments</a>
+                    <a href="comment/{{ $post->id }}"> {{ $comments->where('post_id', $post->id)->count() }} 
+                        @if ($comments->where('post_id', $post->id)->count() > 1)
+                            comments
+                        @elseif ($comments->where('post_id', $post->id)->count() == 1)
+                            comment
+                        @else
+                            comments
+                        @endif
+                    </a>
                     {{-- {{ $users->where('user_id', $comment->user_id)->count() }} --}}
 
                     @if (Auth::check() && Auth::user()->username == $post->author)
