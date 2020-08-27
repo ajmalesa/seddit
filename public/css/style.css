@@ -20,6 +20,10 @@ li {
     padding-left: 0px;
 }
 
+.post_links {
+    overflow-wrap: anywhere;
+}
+
 .post_links:visited {
     color: purple;
 }
@@ -116,7 +120,6 @@ li {
     border: #c6c8ca 1px solid;
     box-shadow: 3px 3px 6px grey;
     padding: 20px;
-    overflow-wrap: anywhere;
     margin-right: 0px;
     margin-left: 0px;
 }
