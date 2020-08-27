@@ -16,6 +16,9 @@
         <br />
         {{-- Iterate through each post and add to list --}}
         @foreach ($posts as $post)
+
+        
+
             @if ($post->votes < 0) 
                 <span id="hiddenPostMessage-{{ $post->id }}" class="hiddenPostMessageClass">
                     <p class="hiddenPostParagraphTag">post hidden due to downvotes <button class="btn btn-outline-danger btn-sm show-post-class" id="showPostID-{{ $post->id }}">show</button></p> 
@@ -28,6 +31,7 @@
                         </a> 
                         - {{ $post->author }}
                         - (<span class="vote_count" id="{{ $post->id }}">{{ $post->votes }}</span>)
+
                         @if (Auth::check())
                             - <a id="{{ $post->id }}" class="arrows upvote_arrows all_posts_arrow">↑</a> 
                             <a id="{{ $post->id }}" class="arrows all_posts_arrow">↓</a>
@@ -59,8 +63,8 @@
                         - {{ $post->author }}
                         - (<span class="vote_count" id="{{ $post->id }}">{{ $post->votes }}</span>)
                         @if (Auth::check())
-                            - <a id="{{ $post->id }}" class="arrows upvote_arrows all_posts_arrow">↑</a> 
-                            <a id="{{ $post->id }}" class="arrows all_posts_arrow">↓</a>
+                            - <a id="{{ $post->id }}" class="@if(Auth::user()->getVoteForPost(Auth::user()->id, $post->id) == 1) voted_up @endif arrows upvote_arrows all_posts_arrow">↑</a> 
+                            <a id="{{ $post->id }}" class="@if(Auth::user()->getVoteForPost(Auth::user()->id, $post->id) == -1) voted_down @endif arrows all_posts_arrow">↓</a>
                         @else 
                             - <a href="/register" class="arrows upvote_arrows all_posts_arrow">↑</a> 
                             <a href="/register" class="arrows all_posts_arrow">↓</a>
