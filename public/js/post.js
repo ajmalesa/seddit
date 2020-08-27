@@ -14,6 +14,9 @@ $(document).on('click', '.delete-button', function() {
 
     // Show yes and no confirmation options
     $('#confirm-delete-for-' + postID)[0].style.display = "inline";
+
+    // Return false so link is not used as anchor tag and page does not scroll or redirect
+    return false;
 })
 
 // Hide the confirmation button if the user cancels the delete and show the delete button again
@@ -26,4 +29,7 @@ $(document).on('click', '.cancel-delete', function() {
 
     // Show the delete button again
     $('#delete-button-for-' + postID)[0].style.display = "inline";
+
+    // Return false so link is not used as anchor tag and page does not scroll or redirect
+    return false;
 })
