@@ -127,3 +127,7 @@ li {
 .confirm-delete {
     display: none;
 }
+
+.arrows.current_post_arrows {
+    display: inline;
+}
