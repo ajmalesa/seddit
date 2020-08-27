@@ -22,7 +22,9 @@ Route::post('/comment/{id}/reply', ['middleware' => 'auth', 'uses' => 'CommentCo
 
 Route::post('/comment/{id}', 'CommentController@upvote');
 
-Route::get('/delete/{id}', 'CreateController@delete');
+Route::get('/delete/{id}', 'CreateController@delete')->middleware('auth');
+
+Route::get('/profile/{id}', 'ProfileController@index');
 
 Auth::routes();
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Post;
 
 class CreateController extends Controller
@@ -43,8 +44,13 @@ class CreateController extends Controller
         // Retrieve post from db by id passed from view
         $post = Post::find(request()->id);
 
-        // Delete post from db
-        $post->delete();
+        // Only allow this route if the authenticated user has the same name 
+        // as the post's author
+        if (Auth::user()->username == $post->author) {
+            // Delete post from db
+            $post->delete();    
+        }
+        
 
         // Return to home page
         return redirect("/");
