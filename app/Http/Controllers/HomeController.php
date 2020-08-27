@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\Comment;
 
@@ -46,6 +47,23 @@ class HomeController extends Controller
 
         // Save new updated post vote count value into db
         $post->save();
+
+            
+        // Get what type of vote was made to store in pivot table, post_user
+        if (request()->voteType == "upvote") {
+            $point = 1;
+        } elseif (request()->voteType == "downvote") {
+            $point = -1;
+        } else {
+            $point = 0;
+        }
+
+        // Update comment_user table or insert comment and vote relation if user has not voted on current comment before
+        $post->users()->sync([Auth::User()->id => 
+            [
+                'vote' => $point
+            ]
+        ]);
     }
 
     public function logout()

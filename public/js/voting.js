@@ -84,7 +84,7 @@ $(document).on('click', '.arrows', function() {
     // post that the arrows was clicked on
     var id = this.id;
 
-    // Store what type of vote was made to pass to backend
+    // Store what type of vote was made on comment to pass to backend
     let voteType = 'none';
     if(this.classList.contains('voted_up')) {
         voteType = "upvote";
@@ -119,7 +119,8 @@ $(document).on('click', '.arrows', function() {
             url:'/',
             data:{
                 id:id, 
-                point:point
+                point:point,
+                voteType
             }      
         });
     }
