@@ -58,8 +58,8 @@
                                 - <a href="/register" class="upvote_arrows comment_arrows">↑</a> 
                                 <a href="/register" class="comment_arrows">↓</a>
                             @else 
-                                - <a id="{{ $comment->id }}" class="arrows @if (Auth::check()) @if (Auth::user()->getVoteForComment(Auth::user()->id , $comment->id) == 1) voted_up @endif @endif upvote_arrows comment_arrows">↑</a> 
-                                <a id="{{ $comment->id }}" class="arrows @if (Auth::check()) @if (Auth::user()->getVoteForComment(Auth::user()->id , $comment->id) == -1) voted_down @endif @endif comment_arrows">↓</a>
+                                - <a id="{{ $comment->id }}" class="arrows @if (Auth::user()->getVoteForComment(Auth::user()->id , $comment->id) == 1) voted_up @endif upvote_arrows comment_arrows">↑</a> 
+                                <a id="{{ $comment->id }}" class="arrows @if (Auth::user()->getVoteForComment(Auth::user()->id , $comment->id) == -1) voted_down @endif comment_arrows">↓</a>
                             @endguest
 
                             {{-- Show how long ago post was made and exact time/date on hover --}}
@@ -97,8 +97,8 @@
                                             - <a href="/register" class="upvote_arrows comment_arrows">↑</a> 
                                             <a href="/register" class="comment_arrows">↓</a>
                                         @else 
-                                            - <a id="{{ $commentReply->id }}" class="arrows @if (Auth::check()) @if(Auth::user()->getVoteForComment(Auth::user()->id , $commentReply->id) == 1) voted_up @endif @endif upvote_arrows comment_arrows">↑</a> 
-                                            <a id="{{ $commentReply->id }}" class="arrows @if (Auth::check()) @if(Auth::user()->getVoteForComment(Auth::user()->id , $commentReply->id) == -1) voted_down @endif @endif comment_arrows">↓</a>
+                                            - <a id="{{ $commentReply->id }}" class="arrows @if(Auth::user()->getVoteForComment(Auth::user()->id , $commentReply->id) == 1) voted_up @endif upvote_arrows comment_arrows">↑</a> 
+                                            <a id="{{ $commentReply->id }}" class="arrows @if(Auth::user()->getVoteForComment(Auth::user()->id , $commentReply->id) == -1) voted_down @endif comment_arrows">↓</a>
                                         @endguest
 
                                         {{-- Show how long ago post was made and exact time/date on hover --}}
@@ -135,8 +135,8 @@
                                                         - <a href="/register" class="upvote_arrows comment_arrows">↑</a> 
                                                         <a href="/register" class="comment_arrows">↓</a>
                                                     @else 
-                                                        - <a id="{{ $commentReply2->id }}" class="arrows @if (Auth::check()) @if(Auth::user()->getVoteForComment(Auth::user()->id , $commentReply2->id) == 1) voted_up @endif @endif upvote_arrows comment_arrows">↑</a> 
-                                                        <a id="{{ $commentReply2->id }}" class="arrows @if (Auth::check()) @if(Auth::user()->getVoteForComment(Auth::user()->id , $commentReply2->id) == -1) voted_down @endif @endif comment_arrows">↓</a>
+                                                        - <a id="{{ $commentReply2->id }}" class="arrows @if(Auth::user()->getVoteForComment(Auth::user()->id , $commentReply2->id) == 1) voted_up @endif upvote_arrows comment_arrows">↑</a> 
+                                                        <a id="{{ $commentReply2->id }}" class="arrows @if(Auth::user()->getVoteForComment(Auth::user()->id , $commentReply2->id) == -1) voted_down @endif comment_arrows">↓</a>
                                                     @endguest
             
                                                     {{-- Show how long ago post was made and exact time/date on hover --}}
