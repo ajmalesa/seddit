@@ -40,7 +40,13 @@
                     <a href="comment/{{ $post->id }}"> {{ $comments->where('post_id', $post->id)->count() }} comments</a>
 
                     @if (Auth::check() && Auth::user()->username == $post->author)
-                            <a href="delete/{{ $post->id }}">delete</a>
+                        <a href="#" class="delete-button" id="delete-button-for-{{ $post->id }}" postNumber="{{ $post->id }}">delete</a>
+
+                        <span class="confirm-delete" id="confirm-delete-for-{{ $post->id }}">
+                            are you sure? 
+                            <a href="/delete/{{ $post->id }}">yes</a> 
+                            <a href="#" class="cancel-delete" postNumber="{{ $post->id }}">no</a>
+                        </span>
                     @endif
 
                     {{-- Show how long ago post was made and exact time/date on hover --}}
@@ -79,7 +85,13 @@
                     {{-- {{ $users->where('user_id', $comment->user_id)->count() }} --}}
 
                     @if (Auth::check() && Auth::user()->username == $post->author)
-                            <a href="delete/{{ $post->id }}">delete</a>
+                        <a href="#" class="delete-button" id="delete-button-for-{{ $post->id }}" postNumber="{{ $post->id }}">delete</a>
+
+                        <span class="confirm-delete" id="confirm-delete-for-{{ $post->id }}">
+                            are you sure? 
+                            <a href="/delete/{{ $post->id }}">yes</a> 
+                            <a href="#" class="cancel-delete" postNumber="{{ $post->id }}">no</a>
+                        </span>
                     @endif
 
                     {{-- Show how long ago post was made and exact time/date on hover --}}
