@@ -17,8 +17,8 @@
                         - <a href="/register" class="arrows upvote_arrows current_post_arrows">↑</a> 
                         <a href="/register" class="arrows current_post_arrows">↓</a>&nbsp;-&nbsp;
                     @else 
-                        <a id="{{ $post->id }}" class="arrows upvote_arrows current_post_arrows">↑</a> 
-                        <a id="{{ $post->id }}" class="arrows current_post_arrows">↓</a>&nbsp;-&nbsp;
+                        <a id="{{ $post->id }}" class="@if(Auth::user()->getVoteForPost(Auth::user()->id, $post->id) == 1) voted_up @endif arrows upvote_arrows current_post_arrows">↑</a> 
+                        <a id="{{ $post->id }}" class="@if(Auth::user()->getVoteForPost(Auth::user()->id, $post->id) == -1) voted_down @endif arrows current_post_arrows">↓</a>&nbsp;-&nbsp;
                     @endguest
                 </h1>
             </div>
