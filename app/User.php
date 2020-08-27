@@ -16,7 +16,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Comment::class)->withPivot('vote');
     }
 
-       /**
+    /**
      * Grab the votes for any comment for any given user from pivot table
      *
      * @param user_id the user id as a fkt
@@ -33,6 +33,32 @@ class User extends Authenticatable
 
         return $vote;
     }
+
+    // Any post can have multiple people voting on it, so designating that relationship
+    // many to many
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class)->withPivot('vote');
+    }
+
+    /**
+     * Grab the votes for any comment for any given user from pivot table
+     *
+     * @param user_id the user id as a fkt
+     * @param post_id the post_id id as a fk 
+     */
+    public function getVoteForPost($user_id, $post_id) {
+        $vote = DB::table('post_user')
+                    ->where('user_id', $user_id)
+                    ->where('post_id', $post_id)
+                    ->get('vote');
+
+        $vote = str_replace('[{"vote":', '', $vote);
+        $vote = str_replace('}]', '', $vote);
+
+        return $vote;
+    }
+
 
     use Notifiable;
 
