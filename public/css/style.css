@@ -131,3 +131,7 @@ li {
 .arrows.current_post_arrows {
     display: inline;
 }
+
+.current_post_links {
+    white-space: nowrap;
+}

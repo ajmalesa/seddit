@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row current_post_row">
             <div class="col-xs-6">
-                <h1 class="h5">
+                <h1 class="h5 current_post_links">
                     (<span class="vote_count" id="{{ $post->id }}">{{ $post->votes }}</span>)
                     @guest 
                         - <a href="/register" class="arrows upvote_arrows current_post_arrows">↑</a> 
