@@ -17,8 +17,7 @@ li {
 }
 
 .comments_list {
-    padding-left: 17px;
-    padding-right: 17px;
+    padding-left: 0px;
 }
 
 .post_links:visited {
@@ -118,4 +117,6 @@ li {
     box-shadow: 3px 3px 6px grey;
     padding: 20px;
     overflow-wrap: anywhere;
+    margin-right: 0px;
+    margin-left: 0px;
 }
