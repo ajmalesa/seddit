@@ -7,9 +7,6 @@
 
     <div class="container">
         <h1 class="h2">{{ $user->username }}</h1><br />
-
-        
-            
             <div class="posts-list">
                 <h2 class="h4">posts</h2>
                 @foreach ($posts as $post)
@@ -32,16 +29,18 @@
             </div>
 
             <br />
-                
 
             <div class="comments-list">
                 <h2 class="h4">comments</h2>
                 @foreach ($comments as $comment)
-                    {{ $comment }}
                     <div class="individual_post">
-                        <li>
-                            {{ $comment->comment }} - 
-                            ({{ $comment->votes }}) -
+                        <li class="comment-box">
+                            <strong>{!! nl2br($comment->makeClickableLinks($comment->comment)) !!}</strong>
+
+                            {{-- Placeholder span so voting js still works correctly by targeting the correct index for elements --}}
+                            <span></span>
+                            
+                            - (<span class="vote_count comment_vote_count" id="{{ $comment->id }}">{{ $comment->votes }}</span>)
                             @guest 
                                 - <a href="/register" class="upvote_arrows comment_arrows">↑</a> 
                                 <a href="/register" class="comment_arrows">↓</a>
@@ -53,7 +52,6 @@
                     </div>
                 @endforeach
             </div>
-        
     </div>
 
 @endsection
