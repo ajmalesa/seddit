@@ -40,18 +40,14 @@
 
         <div>
             <ul class="comments_list">
-                <br >
-                {{-- Iterate through each post and add to list --}}
+                <br />
+                {{-- Iterate through each comment and add to list --}}
                 @foreach ($comments as $comment)
-                    
                     @if($comment->replied_to_id == 0)
                     <div class="comment-chain">
-                        
-                   
                         <li class="comment-box">
                             <strong>{!! nl2br($comment->makeClickableLinks($comment->comment)) !!}</strong>
-                            <br>
-
+                            <br />
                             {{ $comment->getUserName() }}
                             - (<span class="vote_count comment_vote_count" id="{{ $comment->id }}">{{ $comment->votes }}</span>)
                             @guest 
@@ -67,29 +63,24 @@
                                 {{$comment->created_at->diffForHumans()}}
                             </span>
                             
-                            <br>
-                            
+                            <br />
                             @guest <a href="/login">reply</a> 
                             @else 
-                            <a class="reply" id="{{ $comment->id }}" href="#">reply</a>
-                            <div hidden class="reply_section" id="{{ $comment->id }}"><br>
-                                <textarea required class="reply_box w-100" id="{{ $comment->id }}"></textarea><br><br>
-                                <button class="btn btn-outline-dark post_reply post_reply" id="{{ $comment->id }}">post</button>
-                                <button class="btn btn-outline-dark cancel_reply" id="{{ $comment->id}}" href="#">cancel</button>
-                            </div>
+                                <a class="reply" id="{{ $comment->id }}" href="#">reply</a>
+                                <div hidden class="reply_section" id="{{ $comment->id }}"><br />
+                                    <textarea required class="reply_box w-100" id="{{ $comment->id }}"></textarea><br /><br />
+                                    <button class="btn btn-outline-dark post_reply post_reply" id="{{ $comment->id }}">post</button>
+                                    <button class="btn btn-outline-dark cancel_reply" id="{{ $comment->id}}" href="#">cancel</button>
+                                </div>
                             @endguest
                             
-
-                            @if($comment->checkIfExists($comment->id))
-                                
+                            @if($comment->checkIfExists($comment->id))    
                                 <br />
                                 @foreach($comment->getReplyByCommentById($comment->id) as $commentReply) 
-                                    <br>
+                                    <br />
                                     <div class="replies">                                        
                                         <strong>{!! nl2br($commentReply->makeClickableLinks($commentReply->comment)) !!}</strong>
-                                        
-                                        <br>
-
+                                        <br />
                                         {{ $commentReply->getUserName() }}
                                         - (<span class="vote_count comment_vote_count" id="{{ $commentReply->id }}">{{ $commentReply->votes }}</span>)
 
@@ -106,29 +97,24 @@
                                             {{$commentReply->created_at->diffForHumans()}}
                                         </span>
                                         
-                                        <br>
-                                        
+                                        <br />     
                                         @guest <a href="/login">reply</a> 
                                         @else 
-                                        <a class="reply" id="{{ $commentReply->id }}" href="#">reply</a>
-                                        <div hidden class="reply_section" id="{{ $commentReply->id }}"><br>
-                                            <textarea required class="reply_box w-100" id="{{ $commentReply->id }}"></textarea><br /><br />
-                                            <button class="btn btn-outline-dark post_reply post_reply" id="{{ $commentReply->id }}">post</button>
-                                            <button class="btn btn-outline-dark cancel_reply" id="{{ $commentReply->id}}" href="#">cancel</button>
-                                        </div>
+                                            <a class="reply" id="{{ $commentReply->id }}" href="#">reply</a>
+                                            <div hidden class="reply_section" id="{{ $commentReply->id }}"><br />
+                                                <textarea required class="reply_box w-100" id="{{ $commentReply->id }}"></textarea><br /><br />
+                                                <button class="btn btn-outline-dark post_reply post_reply" id="{{ $commentReply->id }}">post</button>
+                                                <button class="btn btn-outline-dark cancel_reply" id="{{ $commentReply->id}}" href="#">cancel</button>
+                                            </div>
                                         @endguest
 
-
                                         @if($commentReply->checkIfExists($commentReply->id))
-                                            <br>
+                                            <br />
                                             @foreach($commentReply->getReplyByCommentById($commentReply->id) as $commentReply2) 
-                                                <br>
+                                                <br />
                                                 <div class="replies">                                        
                                                     <strong>{!! nl2br($commentReply2->makeClickableLinks($commentReply2->comment)) !!}</strong>
-                                                    
-                                                    
-                                                    <br>
-            
+                                                    <br />
                                                     {{ $commentReply2->getUserName() }}
                                                     - (<span class="vote_count comment_vote_count" id="{{ $commentReply2->id }}">{{ $commentReply2->votes }}</span>)
                                                     @guest 
@@ -143,31 +129,24 @@
                                                     <span title = "{{ $commentReply2->created_at->format('m/d/y h:ma') }}">
                                                         {{$commentReply2->created_at->diffForHumans()}}
                                                     </span>
-                                                    
-                                                    <br>
-                                                    
 
+                                                    <br />
                                                 </div>
                                             @endforeach
                                         @endif
-
-
                                     </div>
                                 @endforeach
                             @endif
                         </li>
-                        </div>
+                    </div>
                     @endif
-
-                    
-                @endforeach
-                
+                @endforeach    
             </ul>
         </div>
 
         <form class="pt-1 pb-3" autocomplete="off" id="create_form" action="{{ $post->id }}/reply" method="post">
             @csrf
-            @guest @else <textarea required placeholder="type your comment here" class="form-control w-50" type="text" name="comment"></textarea><br>@endguest
+            @guest @else <textarea required placeholder="type your comment here" class="form-control w-50" type="text" name="comment"></textarea><br />@endguest
             <button class="btn btn-outline-dark" @guest @else type="submit" @endguest>post comment</button>
 
             <input hidden class="form-control" type="text" name="user_id" readonly value="@guest @else {{ Auth::user()->id }}@endguest">
@@ -184,6 +163,5 @@
             }
         });
     </script>
-
 
 @endsection
