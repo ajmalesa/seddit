@@ -3,11 +3,6 @@
 @section('title', 'Seddit')
 
 @section('content')
-    
-    {{-- <select class="form-control w-25 mb-2" onChange="window.location.href=this.value" id="sort_order" name="sort">
-        <li><option value="home">new</option></li>
-        <li><option @if(Request::is('*top')) {{ "selected" }} @endif value="top">top</option></li>
-    </select> --}}
 
     <a class="btn btn-outline-dark @if(Request::is('*home') || !Request::is('*top')) {{ "active" }} @endif" href="/home">new</a>
     <a class="btn btn-outline-dark @if(Request::is('*top')) {{ "active" }} @endif" href="/top">top</a>
@@ -22,7 +17,6 @@
                 @if ($post->votes < 0) 
                     <span id="hiddenPostMessage-{{ $post->id }}" class="hiddenPostMessageClass">
                         <p class="hiddenPostParagraphTag">post hidden due to downvotes <button class="btn btn-outline-danger btn-sm show-post-class" id="showPostID-{{ $post->id }}">show</button></p> 
-                        
                     </span>
                     <div class="individual_post d-none" id="hiddenPostID-{{ $post->id }}"> 
                         <li>
@@ -56,11 +50,9 @@
                         <span title = "{{ $post->created_at->format('m/d/y h:ma') }}">
                             {{ $post->created_at->diffForHumans() }}
                         </span>  
-
                     </div>
                 @else
                     <div class="individual_post">
-                        
                         <li>
                             <a class="post_links" href="{{ $post->url }}" target="_blank">
                                 <strong>{{ $post->content }}</strong>
@@ -85,7 +77,6 @@
                                 comments
                             @endif
                         </a>
-                        {{-- {{ $users->where('user_id', $comment->user_id)->count() }} --}}
 
                         @if (Auth::check() && Auth::user()->username == $post->author)
                             <a href="delete-button" class="delete-button" id="delete-button-for-{{ $post->id }}" postNumber="{{ $post->id }}">delete</a>
@@ -101,7 +92,6 @@
                         <span title = "{{ $post->created_at->format('m/d/y h:ma') }}">
                             {{ $post->created_at->diffForHumans() }}
                         </span>    
-
                     </div>
                 @endif
             @endforeach

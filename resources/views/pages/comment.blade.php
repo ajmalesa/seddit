@@ -58,7 +58,7 @@
                                 <a id="{{ $comment->id }}" class="arrows @if (Auth::user()->getVoteForComment(Auth::user()->id , $comment->id) == -1) voted_down @endif comment_arrows">↓</a>
                             @endguest
 
-                            {{-- Show how long ago post was made and exact time/date on hover --}}
+                            {{-- Show how long ago comment was made and exact time/date on hover --}}
                             <span title = "{{ $comment->created_at->format('m/d/y h:ma') }}">
                                 {{$comment->created_at->diffForHumans()}}
                             </span>
