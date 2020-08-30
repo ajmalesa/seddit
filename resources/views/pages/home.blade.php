@@ -23,7 +23,7 @@
                             <a class="post_links" href="{{ $post->url }}" target="_blank">
                                 <strong>{{ $post->content }}</strong>
                             </a> 
-                            - {{ $post->author }}
+                            - <a href="/profile/{{ $post->getUserIDByAuthorName($post->author) }}">{{ $post->author }}</a>
                             - (<span class="vote_count" id="{{ $post->id }}">{{ $post->votes }}</span>)
                             @if (Auth::check())
                                 - <a id="{{ $post->id }}" class="@if(Auth::user()->getVoteForPost(Auth::user()->id, $post->id) == 1) voted_up @endif arrows upvote_arrows all_posts_arrow">↑</a> 
@@ -57,7 +57,7 @@
                             <a class="post_links" href="{{ $post->url }}" target="_blank">
                                 <strong>{{ $post->content }}</strong>
                             </a> 
-                            - {{ $post->author }}
+                            - <a href="/profile/{{ $post->getUserIDByAuthorName($post->author) }}">{{ $post->author }}</a>
                             - (<span class="vote_count" id="{{ $post->id }}">{{ $post->votes }}</span>)
                             @if (Auth::check())
                                 - <a id="{{ $post->id }}" class="@if(Auth::user()->getVoteForPost(Auth::user()->id, $post->id) == 1) voted_up @endif arrows upvote_arrows all_posts_arrow">↑</a> 
