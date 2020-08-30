@@ -28,7 +28,7 @@
                     <a class="post_links" href="{{ $post->url }}" target="_blank">
                         <strong>{{ $post->content }}</strong>
                     </a> 
-                    - {{ $post->author }}
+                    - <a href="/profile/{{ $post->getUserIDByAuthorName($post->author) }}">{{ $post->author }}</a>
                 </h1>
             </div>
         </div>
@@ -48,7 +48,7 @@
                         <li class="comment-box">
                             <strong>{!! nl2br($comment->makeClickableLinks($comment->comment)) !!}</strong>
                             <br />
-                            {{ $comment->getUserName() }}
+                            <a href="/profile/{{ $comment->user_id }}">{{ $comment->getUserName() }}</a>
                             - (<span class="vote_count comment_vote_count" id="{{ $comment->id }}">{{ $comment->votes }}</span>)
                             @guest 
                                 - <a href="/register" class="upvote_arrows comment_arrows">↑</a> 
@@ -81,7 +81,7 @@
                                     <div class="replies">                                        
                                         <strong>{!! nl2br($commentReply->makeClickableLinks($commentReply->comment)) !!}</strong>
                                         <br />
-                                        {{ $commentReply->getUserName() }}
+                                        <a href="/profile/{{ $commentReply->user_id }}">{{ $commentReply->getUserName() }}</a>
                                         - (<span class="vote_count comment_vote_count" id="{{ $commentReply->id }}">{{ $commentReply->votes }}</span>)
 
                                         @guest 
@@ -115,7 +115,7 @@
                                                 <div class="replies">                                        
                                                     <strong>{!! nl2br($commentReply2->makeClickableLinks($commentReply2->comment)) !!}</strong>
                                                     <br />
-                                                    {{ $commentReply2->getUserName() }}
+                                                    <a href="/profile/{{ $commentReply2->user_id }}">{{ $commentReply2->getUserName() }}</a>
                                                     - (<span class="vote_count comment_vote_count" id="{{ $commentReply2->id }}">{{ $commentReply2->votes }}</span>)
                                                     @guest 
                                                         - <a href="/register" class="upvote_arrows comment_arrows">↑</a> 
