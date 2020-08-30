@@ -14,9 +14,7 @@
             crossorigin="anonymous">
         </script>
 
-        <title>
-            @yield('title')
-        </title>
+        <title>@yield('title')</title>
 
     </head>
 
