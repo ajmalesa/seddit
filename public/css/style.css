@@ -135,3 +135,11 @@ li {
 .current_post_links {
     white-space: nowrap;
 }
+
+.cancel_link_color {
+    color: white!important;
+}
+
+.cancel_link_color:hover {
+    text-decoration: none;
+}

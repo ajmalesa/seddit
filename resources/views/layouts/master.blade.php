@@ -39,7 +39,9 @@
                             register
                         </a>
                     @else
-                        <span class="mr-1">{{ Auth::user()->username }}</span>
+                        <a class="cancel_link_color" href="/profile/{{ Auth::user()->id }}">
+                            <span class="mr-1">{{ Auth::user()->username }}</span>
+                        </a>
                         <a class="navbar-brand" href="{{ route('logout') }}">
                             {{ __('logout') }}
                         </a>
