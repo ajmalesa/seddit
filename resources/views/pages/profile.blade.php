@@ -23,6 +23,7 @@
                                 - <a href="/register" class="arrows upvote_arrows all_posts_arrow">↑</a> 
                                 <a href="/register" class="arrows all_posts_arrow">↓</a>
                             @endif
+                            - <a href="/comment/{{ $post->id }}">link</a>
                         </li> 
                     </div>
                 @endforeach
@@ -48,6 +49,8 @@
                                 - <a id="{{ $comment->id }}" class="arrows @if (Auth::user()->getVoteForComment(Auth::user()->id , $comment->id) == 1) voted_up @endif upvote_arrows comment_arrows">↑</a> 
                                 <a id="{{ $comment->id }}" class="arrows @if (Auth::user()->getVoteForComment(Auth::user()->id , $comment->id) == -1) voted_down @endif comment_arrows">↓</a>
                             @endguest
+
+                            - <a href="/comment/{{ $comment->post_id }}">link</a>
                         </li> 
                     </div>
                 @endforeach
