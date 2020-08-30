@@ -44,7 +44,7 @@ class User extends Authenticatable
     /**
      * Grab the votes for any comment for any given user from pivot table
      *
-     * @param user_id the user id as a fkt
+     * @param user_id the user id as a fk
      * @param post_id the post_id id as a fk 
      */
     public function getVoteForPost($user_id, $post_id) {
