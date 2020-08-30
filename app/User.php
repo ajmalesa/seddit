@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use DB;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -59,6 +60,37 @@ class User extends Authenticatable
         return $vote;
     }
 
+    /**
+     * Get the total post votes for a user
+     */
+    public function getTotalPostVotes() {
+        $totalPostVotes = DB::table('posts')
+                            ->where('author', $this->username)
+                            ->sum('votes');
+                           
+        return $totalPostVotes;
+    }
+
+    /**
+     * Get the total comment votes for a user
+     */
+    public function getTotalCommentVotes() {
+        $totalCommentVotes = DB::table('comments')
+                            ->where('user_id', $this->id)
+                            ->sum('votes');
+                           
+        return $totalCommentVotes;
+    }
+
+    /**
+     * Get the total number of days since account was created
+     */
+    public function getUserAccountAge() {
+        $date = Carbon::parse($this->created_at);
+        $now = Carbon::now();
+
+        return $date->diffInDays($now);
+    }
 
     use Notifiable;
 
