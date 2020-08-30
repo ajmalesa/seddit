@@ -143,3 +143,21 @@ li {
 .cancel_link_color:hover {
     text-decoration: none;
 }
+
+.awards-column {
+    margin-top: 2%;
+    text-align:center;
+}
+@media (max-width: 768px) {
+    .awards-column {
+        /* margin-top: 5%;    */
+    }
+}
+
+.posts-list {
+    margin-top: 3%;
+}
+
+.comments-list {
+    margin-top: 5%;
+}
