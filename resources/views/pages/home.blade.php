@@ -20,7 +20,7 @@
                     </span>
                     <div class="individual_post d-none" id="hiddenPostID-{{ $post->id }}"> 
                         <li>
-                            <a class="post_links" href="{{ $post->url }}" target="_blank">
+                            <a class="post_links" href="{{ $post->url }}" target="_blank" rel="noreferrer">
                                 <strong>{{ $post->content }}</strong>
                             </a> 
                             - <a href="/profile/{{ $post->getUserIDByAuthorName($post->author) }}">{{ $post->author }}</a>
@@ -54,7 +54,7 @@
                 @else
                     <div class="individual_post">
                         <li>
-                            <a class="post_links" href="{{ $post->url }}" target="_blank">
+                            <a class="post_links" href="{{ $post->url }}" target="_blank" rel="noreferrer">
                                 <strong>{{ $post->content }}</strong>
                             </a> 
                             - <a href="/profile/{{ $post->getUserIDByAuthorName($post->author) }}">{{ $post->author }}</a>

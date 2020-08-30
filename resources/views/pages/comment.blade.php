@@ -25,7 +25,7 @@
 
             <div class="col-xs-6">
                 <h1 class="h4">
-                    <a class="post_links" href="{{ $post->url }}" target="_blank">
+                    <a class="post_links" href="{{ $post->url }}" target="_blank" rel="noreferrer">
                         <strong>{{ $post->content }}</strong>
                     </a> 
                     - <a href="/profile/{{ $post->getUserIDByAuthorName($post->author) }}">{{ $post->author }}</a>
