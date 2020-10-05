@@ -58,6 +58,10 @@ li {
     }
 }
 
+.navbar-brand {
+    margin-right: 0px;
+}
+
 .replies {
     margin-left: 35px;
 }
