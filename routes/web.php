@@ -6,11 +6,20 @@ date_default_timezone_set('America/Los_Angeles');
 
 Route::get('/', 'HomeController@index');
 
+Route::get('/page/{page}', 'HomeController@indexOnPage');
+
 Route::get('/top', 'HomeController@top');
+
+Route::get('/top/page/{page}', 'HomeController@topOnPage');
 
 Route::post('/', 'HomeController@upvote');
 
-Route::get('/create', ['middleware' => 'auth', 'uses' => 'CreateController@index']);
+Route::get('/create', 
+            [
+                'middleware' => 'auth', 
+                'uses' => 'CreateController@index'
+            ])
+            ->name('create');
 
 Route::post('/create', 'CreateController@insert'); 
 

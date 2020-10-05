@@ -12,26 +12,105 @@ class HomeController extends Controller
     
     public function index() 
     {
+        // Get total number of posts so we can show next button if there are more
+        // posts than currently being displayed on page
+        $postCount = Post::all()->count();
+
         // Retrieve posts from db sorted by id
-        $posts = Post::orderBy('id', 'desc')->get();
+        $posts = Post::orderBy('id', 'desc')
+                        ->limit(10)
+                        ->get();
 
         // Retrieve comments from db sorted by id 
         $comments = Comment::orderBy('id', 'desc')->get();
         
         // Return home page view and pass posts and comments to use in home page
-        return view('pages.home', ['posts' => $posts, 'comments' => $comments]);
+        return view('pages.home', [ 
+                        'posts' => $posts, 
+                        'comments' => $comments,                        
+                        'postCount' => $postCount,
+                        'page' => 1
+                    ]);
+    }
+
+    // When user is not on first page
+    public function indexOnPage($page) 
+    {
+        // Get total number of posts so we can show next button if there are more
+        // posts than currently being displayed on page
+        $postCount = Post::all()->count();
+
+        // Skip posts by page number subtracted by 1 and then multiplied by 10 as
+        // that is how many we are displaying on each page
+        $skipCount = ($page - 1) * 10;
+
+        // Retrieve posts from db sorted by id
+        $posts = Post::orderBy('id', 'desc')
+                        ->skip($skipCount)
+                        ->limit(10)
+                        ->get();
+
+        // Retrieve comments from db sorted by id 
+        $comments = Comment::orderBy('id', 'desc')->get();
+        
+        // Return home page view and pass posts and comments to use in home page
+        return view('pages.home', [ 
+                        'posts' => $posts, 
+                        'comments' => $comments,
+                        'page' => $page,
+                        'postCount' => $postCount
+                    ]);
     }
 
     public function top() 
     {   
+        // Get total number of posts so we can show next button if there are more
+        // posts than currently being displayed on page
+        $postCount = Post::all()->count();
+
         // Set order of posts by votes from highest to lowest
-        $posts = Post::orderBy('votes', 'desc')->get();
+        $posts = Post::orderBy('votes', 'desc')
+                        ->limit(10)
+                        ->get();
 
         // Retrieve comments from db sorted by id 
         $comments = Comment::orderBy('id', 'desc')->get();
         
         // Return home page view and pass posts and comments to use in home page
-        return view('pages.home', ['posts' => $posts, 'comments' => $comments]);
+        return view('pages.home', [
+                        'posts' => $posts, 
+                        'comments' => $comments,
+                        'page' => 1,
+                        'postCount' => $postCount
+                    ]);
+    }
+
+    public function topOnPage($page) 
+    {   
+        // Get total number of posts so we can show next button if there are more
+        // posts than currently being displayed on page
+        $postCount = Post::all()->count();
+
+        // Skip posts by page number subtracted by 1 and then multiplied by 10 as
+        // that is how many we are displaying on each page
+        $skipCount = ($page - 1) * 10;
+
+        // Set order of posts by votes from highest to lowest
+        $posts = Post::orderBy('votes', 'desc')
+                        ->skip($skipCount)
+                        ->limit(10)
+                        ->get();
+
+        // Retrieve comments from db sorted by id 
+        $comments = Comment::orderBy('id', 'desc')->get();
+        
+        // Return home page view and pass posts and comments to use in home page
+        return view('pages.home', [
+                        'posts' => $posts, 
+                        'comments' => $comments,
+                        'page' => $page,
+                        'postCount' => $postCount
+                    ]);
     }
 
     public function upvote() 

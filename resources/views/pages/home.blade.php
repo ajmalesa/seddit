@@ -7,6 +7,10 @@
     <a class="btn btn-outline-dark @if(Request::is('*home') || !Request::is('*top')) {{ "active" }} @endif" href="/home">new</a>
     <a class="btn btn-outline-dark @if(Request::is('*top')) {{ "active" }} @endif" href="/top">top</a>
     
+    <div class="submit-container float-right">
+        <a class="btn btn-outline-dark" href="{{route('create')}}""><span class="submit">submit post</span></a>
+    </div>
+
     <ol class="posts_list">
         <br />
         @if ($posts->count() == 0) 
@@ -34,7 +38,15 @@
                             @endif
                         </li> 
                         
-                        <a href="comment/{{ $post->id }}"> {{ $comments->where('post_id', $post->id)->count() }} comments</a>
+                        <a href="/comment/{{ $post->id }}"> {{ $comments->where('post_id', $post->id)->count() }} 
+                            @if ($comments->where('post_id', $post->id)->count() > 1)
+                                comments
+                            @elseif ($comments->where('post_id', $post->id)->count() == 1)
+                                comment
+                            @else
+                                comments
+                            @endif
+                        </a>
 
                         @if (Auth::check() && Auth::user()->username == $post->author)
                             <a href="delete-button" class="delete-button" id="delete-button-for-{{ $post->id }}" postNumber="{{ $post->id }}">delete</a>
@@ -68,7 +80,7 @@
                             @endif
                         </li> 
                         
-                        <a href="comment/{{ $post->id }}"> {{ $comments->where('post_id', $post->id)->count() }} 
+                        <a href="/comment/{{ $post->id }}"> {{ $comments->where('post_id', $post->id)->count() }} 
                             @if ($comments->where('post_id', $post->id)->count() > 1)
                                 comments
                             @elseif ($comments->where('post_id', $post->id)->count() == 1)
@@ -99,8 +111,26 @@
     </ol>
     <br />
 
-    <div class="submit-container">
-        <a class="btn btn-outline-dark" href="create"><span class="submit">submit post</span></a>
-    </div>
+    {{-- If third portion of url exploded by / is top, then show top pagination links --}}
+    {{-- Otherwise  show normal pagination links --}}
+    <div class="navigation-container mb-5">
+        @if(isset(explode('/', url()->current())[3]) && explode('/', url()->current())[3] === "top")
+            @if ($page > 1)
+                <a class="btn btn-outline-dark float-left" href="/top/page/{{$page - 1}}"><span class="submit">previous</span></a>
+            @endif
 
+            @if (($page * 10) < $postCount)
+                <a class="btn btn-outline-dark float-right" href="/top/page/{{$page + 1}}"><span class="submit">next</span></a>
+            @endif
+        @else 
+            @if ($page > 1)
+                <a class="btn btn-outline-dark float-left" href="/page/{{$page - 1}}"><span class="submit">previous</span></a>
+            @endif
+
+            @if (($page * 10) < $postCount)
+                <a class="btn btn-outline-dark float-right" href="/page/{{$page + 1}}"><span class="submit">next</span></a>
+            @endif
+        @endif
+    </div>
+    
 @endsection
