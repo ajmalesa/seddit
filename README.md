@@ -1,5 +1,5 @@
 <h1>Seddit</h1>
 
-A Reddit clone I made to the familiarize myself with the ins and outs of Laravel and MVC (Model View Controller).
+A Reddit clone developed using Laravel and adhering to the MVC architectural pattern.
 
 https://seddit.ajmalesa.com/
