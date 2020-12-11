@@ -14,7 +14,7 @@
     <ol class="posts_list">
         <br />
         @if ($posts->count() == 0) 
-            click below to be the first to post
+            click submit post to be the first to post
         @else 
             {{-- Iterate through each post and add to list --}}
             @foreach ($posts as $post)

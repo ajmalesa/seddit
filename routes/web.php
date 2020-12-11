@@ -12,6 +12,8 @@ Route::get('/top', 'HomeController@top');
 
 Route::get('/top/page/{page}', 'HomeController@topOnPage');
 
+Route::get('/sub/{sub}', 'SubController@index');
+
 Route::post('/', 'HomeController@upvote');
 
 Route::get('/create', 
@@ -27,7 +29,11 @@ Route::get('/comment/{id}', 'CommentController@index');
 
 Route::get('/comment/{id}/top', 'CommentController@top');
 
-Route::post('/comment/{id}/reply', ['middleware' => 'auth', 'uses' => 'CommentController@reply']);
+Route::post('/comment/{id}/reply', 
+            [
+                'middleware' => 'auth', 
+                'uses' => 'CommentController@reply'
+            ]);
 
 Route::post('/comment/{id}', 'CommentController@upvote');
 
